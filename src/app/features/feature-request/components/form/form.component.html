@@ -1,0 +1,114 @@
+<h1>
+  <app-back-button></app-back-button>
+  {{dialogTitle}}</h1>
+
+<form #myForm [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <mat-form-field>
+      <mat-label>Issue subject</mat-label>
+      <input autofocus matInput formControlName="title" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('title').getError('required')">
+        Subject is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>On page</mat-label>
+      <input matInput formControlName="url" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('url').getError('required')">
+        URL is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Issue Type</mat-label>
+      <mat-select formControlName="type" required>
+        <mat-option [value]="'-1'">
+          Bug
+        </mat-option>
+        <mat-option [value]="'0'">
+          Feature request
+        </mat-option>
+        <mat-option [value]="'1'">
+          Other
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('type').getError('required')">
+        Issue Type is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority" required>
+        <mat-option [value]="'0'">
+          Very low
+        </mat-option>
+        <mat-option [value]="'1'">
+          Low
+        </mat-option>
+        <mat-option [value]="'2'">
+          Normal
+        </mat-option>
+        <mat-option [value]="'3'">
+          High
+        </mat-option>
+        <mat-option [value]="'4'">
+          Critical
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('priority').getError('required')">
+        Priority is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Issue description</mat-label>
+      <textarea matInput formControlName="description" rows="24" required></textarea>
+      <mat-error *ngIf="form.get('description').getError('required')">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+    <mat-icon class="secondary" matSuffix title="Formatting Help" (click)="goToMarkdownHelp()">help</mat-icon>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Last entered form values</mat-label>
+      <textarea id="values" matInput formControlName="values" rows="4"></textarea>
+    </mat-form-field>
+  </div>
+  <!-- <div>
+    <mat-form-field>
+      <mat-label>Screenshot</mat-label>
+      <app-file-upload formControlName="file_url" label="Screenshot image"></app-file-upload>
+    </mat-form-field>
+  </div> -->
+
+  <ul class="list-inline list-inline-buttons">
+    <li>
+      <button (click)="this.goBack()" mat-raised-button>Close</button>
+    </li>
+    <li>
+      <button (click)="form.reset()" mat-raised-button>Reset</button>
+    </li>
+    <li>
+      <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button
+              class="btn-save">Save
+      </button>
+    </li>
+  </ul>
+
+</form>
+
+<ng-template #loading>
+  <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

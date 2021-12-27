@@ -1,0 +1,18 @@
+<h1>User details</h1>
+
+<ng-container *ngIf="user | async as u">
+  <app-user [model]="u" linkTo="mailto"></app-user>
+
+  <h2>ID</h2>
+
+  {{u.id}}
+
+  <h2>Username</h2>
+  {{u.username}}
+  <h2>Email</h2>
+  {{u.email}}
+  <h2>Role</h2>
+  {{u.role}}
+
+</ng-container>
+

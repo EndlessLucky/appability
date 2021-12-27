@@ -1,0 +1,28 @@
+#main-area {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+#toolbar-main {
+  justify-content: space-between;
+  .navitem {
+    padding-right: 1rem;
+  }
+  .mat-icon-inline {
+    position: relative; top:3px;
+    padding-right: 0.15rem;
+  }
+  #app-title {
+    position: relative;
+    top: 3px;
+  }
+}
+
+.link {
+  cursor: pointer;
+}
+
+// make the main container background the same color as the theme background
+.mat-sidenav-container {
+  height: 100vh;
+}

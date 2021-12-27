@@ -1,0 +1,136 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+
+
+  <!-- Title field - text input -->
+  <div *ngIf="fields.title">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Start field - Datepicker -->
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="start" [matDatepicker]="StartDatepicker">
+      <mat-datepicker-toggle matSuffix [for]="StartDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #StartDatepicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <!-- End field - Datepicker -->
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="end" [matDatepicker]="EndDatepicker">
+      <mat-datepicker-toggle matSuffix [for]="EndDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #EndDatepicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+
+  <!-- Location field - text input -->
+  <div *ngIf="fields.location">
+    <mat-form-field>
+      <mat-label>Location</mat-label>
+      <input matInput formControlName="location" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Creator field - text input -->
+  <div *ngIf="fields.creator">
+    <mat-form-field>
+      <mat-label>Creator</mat-label>
+      <input matInput formControlName="creator" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Attendees field - text input -->
+  <div *ngIf="fields.attendees">
+    <mat-form-field>
+      <mat-label>Attendees</mat-label>
+      <input matInput formControlName="attendees" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Status field - text input -->
+  <div *ngIf="fields.status">
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <input matInput formControlName="status" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- WebLink field - text input -->
+  <div *ngIf="fields.webLink">
+    <mat-form-field>
+      <mat-label>Web Link</mat-label>
+      <input matInput formControlName="webLink" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- HangoutLink field - text input -->
+  <div *ngIf="fields.hangoutLink">
+    <mat-form-field>
+      <mat-label>Hangout Link</mat-label>
+      <input matInput formControlName="hangoutLink" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Description field - text input -->
+  <div *ngIf="fields.description">
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button>Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>

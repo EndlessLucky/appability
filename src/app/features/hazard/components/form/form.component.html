@@ -1,0 +1,93 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- Lastmodified field - Datepicker -->
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="lastmodified" [matDatepicker]="LastmodifiedDatepicker">
+      <mat-datepicker-toggle matSuffix [for]="LastmodifiedDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #LastmodifiedDatepicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+
+  <!-- Lastmodifiedby field - text input -->
+  <div *ngIf="fields.lastmodifiedby">
+    <mat-form-field>
+      <mat-label>Lastmodifiedby</mat-label>
+      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- HazardLabel field - text input -->
+  <div *ngIf="fields.hazardLabel">
+    <mat-form-field>
+      <mat-label>Hazard Label</mat-label>
+      <input matInput formControlName="hazardLabel" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- HazardType field - text input -->
+  <div *ngIf="fields.hazardType">
+    <mat-form-field>
+      <mat-label>Hazard Type</mat-label>
+      <input matInput formControlName="hazardType" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- HazardDescription field - text input -->
+  <div *ngIf="fields.hazardDescription">
+    <mat-form-field>
+      <mat-label>Hazard Description</mat-label>
+      <input matInput formControlName="hazardDescription" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Image field - text input -->
+  <div *ngIf="fields.image">
+    <mat-form-field>
+      <mat-label>Image</mat-label>
+      <input matInput formControlName="image" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button>Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

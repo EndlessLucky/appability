@@ -1,0 +1,97 @@
+<h1>Welcome to the Appability Dashboard!</h1>
+
+<div fxLayout="row" fxLayoutGap="16px">
+
+  <div fxFlex="20%">
+    <mat-card class="example-card" routerLink="/payment-request/list">
+      <mat-card-header>
+        <mat-card-title>Service Requests</mat-card-title>
+        <mat-card-subtitle>Manage Requests</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-icon mat-card-image>favorite</mat-icon>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex="20%">
+    <mat-card class="example-card" routerLink="/payment-outcome/upload">
+      <mat-card-header>
+        <mat-card-title>Payment Outcomes</mat-card-title>
+        <mat-card-subtitle>Upload CSV</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-icon mat-card-image>upload</mat-icon>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex="20%">
+    <mat-card class="example-card" routerLink="/user/list">
+      <mat-card-header>
+        <mat-card-title>Users</mat-card-title>
+        <mat-card-subtitle>Manage Users</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-icon mat-card-image>person</mat-icon>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
+
+<br/>
+
+<div fxLayout="row" fxLayoutGap="16px">
+
+
+  <div fxFlex="20%" >
+    <mat-card class="example-card" routerLink="/settings">
+      <mat-card-header>
+        <mat-card-title>Settings</mat-card-title>
+        <mat-card-subtitle>Change application options</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-icon mat-card-image>settings</mat-icon>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
+  <div fxFlex="20%" >
+    <mat-card class="example-card" routerLink="/help/index">
+      <mat-card-header>
+        <mat-card-title>Help</mat-card-title>
+        <mat-card-subtitle>Contact support</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-icon mat-card-image>help</mat-icon>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
+</div>
+
+<!--<h2>Unprocessed Referral Forms <span matBadge="5" matBadgeColor="accent"></span></h2>-->
+
+<!--<ul>-->
+<!--  <li>Adam Driver <mat-icon routerLink="/client/create" title="Take care of this one" style="display: inline-flex; vertical-align: middle">add</mat-icon></li>-->
+<!--  <li>User Name <mat-icon routerLink="/client/create" title="Take care of this one" style="display: inline-flex; vertical-align: middle">add</mat-icon></li>-->
+<!--</ul>-->
+
+<!--<button mat-raised-button routerLink="/ability-consultants-referral-form/list">More</button>-->
+
+<!--<h2>Your Recent Service Requests</h2>-->
+
+<!--<ul>-->
+<!--  <li>User Name1</li>-->
+<!--  <li>User Name2</li>-->
+<!--</ul>-->
+
+
+<!--<button mat-button mat-raised-button routerLink="/client/create">More</button>-->
+<!--<button mat-button mat-raised-button routerLink="/client/create">Create new Service Request</button>-->
+
+<h2>You</h2>
+<app-current-user></app-current-user>

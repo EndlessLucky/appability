@@ -1,0 +1,33 @@
+<div>
+  <mat-form-field>
+
+    <mat-label>{{getTitle() | appWordize}}</mat-label>
+
+    <input (keyup)="keyUp($event)" matInput aria-label="State" [matAutocomplete]="auto" [formControl]="formControl" title="{{formControl.value ? formControl.value[getOrderByField()] + ' (record #' + formControl.value.id + ')' : ''}}">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDisplayed">
+      <ng-container *ngIf="$filtered | async as records; else isLoading">
+
+        <mat-option *ngFor="let record of records" [value]="record" title="{{getLabel(record)}}">
+          <span><img style="max-width: 100px; padding-right: 20px" src="/assets/img/{{record.image}}" alt="{{record.name}}">{{getLabel(record)}}</span>
+        </mat-option>
+
+      </ng-container>
+      <ng-template #isLoading>
+        <mat-option *ngIf="isLoading" class="is-loading" disabled="disabled">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-option>
+      </ng-template>
+
+    </mat-autocomplete>
+
+    <mat-icon (click)="search()" matSuffix title="Show autocomplete list">expand_more</mat-icon>
+  </mat-form-field>
+
+  <mat-icon class="secondary" matSuffix title="Create new record" [routerLink]="getCreateRoute()">add</mat-icon>
+  <mat-icon class="secondary" matSuffix title="List all records" [routerLink]="getListRoute()">list</mat-icon>
+  <mat-icon class="secondary" *ngIf="formControl.value && formControl.value.id" [routerLink]="getViewRoute()" matSuffix title="Edit {{formControl.value[getOrderByField()]}}">more_horiz</mat-icon>
+
+  <ng-container *ngIf="debug && formControl.value && formControl.value.id">
+    <h5>FormControl value: {{formControl.value ? formControl.value.id : ''}}</h5>
+  </ng-container>
+</div>

@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>{{dialogTitle}}</h1>
+
+<mat-dialog-content [formGroup]="form">
+
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- FirstNameOfReferrer field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>First Name Of Referrer</mat-label>
+      <input matInput formControlName="firstNameOfReferrer" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- LastNameOfReferrer field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Last Name Of Referrer</mat-label>
+      <input matInput formControlName="lastNameOfReferrer" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions>
+  <div>
+    <button (click)="close()" mat-raised-button>Close</button>
+    <button type="submit" (click)="save()" color="primary" mat-raised-button>Save</button>
+  </div>
+</mat-dialog-actions>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

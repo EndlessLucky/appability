@@ -1,0 +1,80 @@
+<h1>File upload</h1>
+
+<div>
+  <div>
+    <form [formGroup]="form">
+
+      <!--  TODO-->
+<!--      <mat-form-field>-->
+<!--        <mat-label>Table to import to</mat-label>-->
+<!--        <mat-select #table formControlName="table" [(ngModel)]="defaultTable" appearance="fill">-->
+<!--          <mat-option *ngFor="let table of tables" [value]="table.value">-->
+<!--            {{table.label}}-->
+<!--          </mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+    </form>
+  </div>
+
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Files</mat-card-title>
+    </mat-card-header>
+    <mat-card-content style="display: grid">
+
+<!--      <div class="image-box">-->
+<!--        <div class="layer2"></div>-->
+<!--        <div class="layer1">-->
+<!--          <img src="https://via.placeholder.com/600/000000/FFFFFF?Text=." alt="placeholder" style="max-width: 100%; object-fit: cover" />-->
+<!--        </div>-->
+<!---->
+<!--        <div class="layer3">-->
+<!--          <mat-progress-spinner value="85">-->
+<!--          </mat-progress-spinner>-->
+<!--        </div>-->
+<!--        <div class="layer3">77</div>-->
+<!--      </div>-->
+
+        <div *ngIf="files.length">
+            <div *ngFor="let file of files">
+              <div *ngIf="file.isImage" class="image-box" title="{{file.data.name}} ({{file.data.size | filesize}})">
+                <ng-container *ngIf="file.progress < 100">
+                  <div class="layer2 overlay"></div>
+
+
+                  <div class="layer3">
+                    <mat-progress-spinner [value]="file.progress" class="mat-spinner-neutral-no"></mat-progress-spinner>
+                  </div>
+                  <div style="text-align: center">
+                    <span>{{file.progress}}% of {{file.data.size | filesize}}</span>
+                  </div>
+                  <!--                <span style="float: left">{{file.data.name}}</span>-->
+
+                </ng-container>
+                <div class="layer1">
+                  <img style="max-width: 300px" src="{{file.src}}" alt="noImage" title="{{file.data.name}}" />
+                </div>
+                <!--                <span *ngIf="urls[file.data.name]">-->
+                <!--              <img style="max-width: 50px" src="http://localhost:8083/drive/{{urls[file.data.name]}}" alt="nodata" />-->
+                <!--                </span>-->
+
+
+              </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div style="margin-left: 0.5em;">
+        <button mat-raised-button (click)="onFileSelect()">
+          <mat-icon>file_upload</mat-icon>
+          Choose one or more files
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+
+  <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple" accept="{{allowedMimeTypes}}"
+         style="display:none;"/></div>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

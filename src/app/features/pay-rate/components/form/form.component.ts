@@ -1,0 +1,23 @@
+import { Component } from '@angular/core';
+import { Validators } from '@angular/forms';
+import { BaseFormComponent } from '../../../../shared/components/base-form/base-form.component';
+
+@Component({
+    selector: 'app-pay-rate-create',
+    templateUrl: './form.component.html',
+    styleUrls: ['./../../../../shared/grid/components/core-form/core-form.component.scss']
+})
+export class FormComponent extends BaseFormComponent {
+    fields = {
+        id: ['', []],                // for column: "id"
+        lastmodified: ['', []],                // for column: "LastModified"
+        lastmodifiedby: ['', []],                // for column: "LastModifiedBy"
+        rateName: ['', []],                // for column: "Rate Name"
+        projectRate: ['', []],                // for column: "Project Rate"
+        clientRate0: ['', []],                // for column: "Client Rate 0"
+        clientRate8: ['', []],                // for column: "Client Rate 8"
+        clientRate16: ['', []],                // for column: "Client Rate 16"
+        clientRate24: ['', []],                // for column: "Client Rate 24"
+        helpLoading: ['', []],                // for column: "Help loading"
+    };
+}

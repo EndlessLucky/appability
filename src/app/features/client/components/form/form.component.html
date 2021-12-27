@@ -1,0 +1,317 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading" style="display: block">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+
+  <!-- LastModified field - text input -->
+<!--  <div>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Last Modified</mat-label>-->
+<!--      <input matInput formControlName="lastModified" (keyup.enter)="save()">-->
+<!--            <mat-icon matSuffix>person</mat-icon>-->
+<!--            <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+  <!-- ModifiedBy field - text input -->
+<!--  <div>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Modified By</mat-label>-->
+<!--      <input matInput formControlName="modifiedBy" (keyup.enter)="save()">-->
+<!--            <mat-icon matSuffix>person</mat-icon>-->
+<!--            <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+  <!-- Client_file_url field - text input -->
+  <div *ngIf="fields.client_file_url">
+    <mat-form-field>
+      <mat-label>Client File URL</mat-label>
+      <input matInput formControlName="client_file_url" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('client_file_url').getError('required')">
+        Client File Url is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <app-service-request-type-autocomplete *ngIf="fields.serviceRequestType" [formControl]="form.controls.serviceRequestType" ngDefaultControl></app-service-request-type-autocomplete>
+  <mat-error *ngIf="form.get('serviceRequestType').getError('required') && form.get('serviceRequestType').touched" style="font-size: 12px;">
+    Service Request Type is required
+  </mat-error>
+
+  <app-ability-consultants-referral-form-autocomplete *ngIf="fields.referralForm" label="Referral Form" style="width: 100%; max-width: 500px" [formControl]="form.controls.referralForm" ngDefaultControl></app-ability-consultants-referral-form-autocomplete>
+  <mat-error *ngIf="form.get('referralForm').getError('required') && form.get('referralForm').touched" style="font-size: 12px;">
+    Referral Form is required
+  </mat-error>
+
+  <!-- Client stage -->
+
+  <app-client-stage-autocomplete *ngIf="fields.client_stage"  [formControl]="form.controls.client_stage" ngDefaultControl></app-client-stage-autocomplete>
+  <mat-error *ngIf="form.get('client_stage').getError('required') && form.get('client_stage').touched" style="font-size: 12px;">
+    Client Stage is required
+  </mat-error>
+
+
+
+  <!-- KeyConsultant field - text input -->
+  <app-person-autocomplete *ngIf="fields.keyConsultant" title="Choose key consultant" label="Key Consultant" [formControl]="form.controls.keyConsultant" ngDefaultControl></app-person-autocomplete>
+  <mat-error *ngIf="form.get('keyConsultant').getError('required') && form.get('keyConsultant').touched" style="font-size: 12px;">
+    Key Consultant is required
+  </mat-error>
+
+  <app-client-autocomplete *ngIf="fields.client" [formControl]="form.controls.client" ngDefaultControl></app-client-autocomplete>
+  <mat-error *ngIf="form.get('client').getError('required') && form.get('client').touched" style="font-size: 12px;">
+    Client is required
+  </mat-error>
+
+  <app-ability-consultants-referral-form-funds-management *ngIf="fields.fundsManagement" [formControl]="form.controls.fundsManagement" [initial_funds]="initial_funds" ngDefaultControl>
+  </app-ability-consultants-referral-form-funds-management>
+  <mat-error *ngIf="form.get('fundsManagement').getError('required') && form.get('fundsManagement').touched" style="font-size: 12px;">
+    Funds Management is required
+  </mat-error>
+
+
+
+  <app-ability-consultants-referral-form-pipeline *ngIf="fields.pipeline" [formControl]="form.controls.pipeline" ngDefaultControl></app-ability-consultants-referral-form-pipeline>
+  <mat-error *ngIf="form.get('pipeline').getError('required') && form.get('pipeline').touched" style="font-size: 12px;">
+    Pipeline is required
+  </mat-error>
+
+
+  <!-- ClientGoals field - text input -->
+  <div *ngIf="fields.clientGoals">
+    <mat-form-field>
+      <mat-label>Client Goals</mat-label>
+      <textarea title="Describe the goals of the client in few sentences" matInput formControlName="clientGoals" (keyup.enter)="save()" required></textarea>
+      <mat-error *ngIf="form.get('clientGoals').getError('required')">
+        Client goal is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Comments field - text input -->
+  <div *ngIf="fields.comments">
+    <mat-form-field>
+      <mat-label>Comments</mat-label>
+      <textarea matInput formControlName="comments" (keyup.enter)="save()" required></textarea>
+      <mat-error *ngIf="form.get('comments').getError('required')">
+        Comments are required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Organisation field - text input -->
+<!--  <div>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Organisation</mat-label>-->
+<!--      <input matInput formControlName="organisation" (keyup.enter)="save()">-->
+<!--            <mat-icon matSuffix>person</mat-icon>-->
+<!--            <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+  <app-organisation-autocomplete *ngIf="fields.organisation" [formControl]="form.controls.organisation" ngDefaultControl></app-organisation-autocomplete>
+  <mat-error *ngIf="form.get('organisation').getError('required') && form.get('organisation').touched" style="font-size: 12px;">
+    Organisation is required
+  </mat-error>
+
+  <!-- ProjectName field - text input -->
+  <div *ngIf="fields.projectName">
+    <mat-form-field>
+      <mat-label>Project Name</mat-label>
+      <input matInput formControlName="projectName" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('projectName').getError('required')">
+        Project Name is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ServiceAgreementPrint field - text input -->
+  <div *ngIf="fields.serviceAgreementPrint">
+    <mat-form-field>
+      <mat-label>Service Agreement Print</mat-label>
+      <input type="number" matInput formControlName="serviceAgreementPrint" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('serviceAgreementPrint').getError('required')">
+        Service Agreement Print is required
+      </mat-error>
+        <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- PlanManagementOrganisation field - text input -->
+  <div *ngIf="fields.planManagementOrganisation">
+    <mat-form-field>
+      <mat-label>Plan Management Organisation</mat-label>
+      <input matInput formControlName="planManagementOrganisation" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('planManagementOrganisation').getError('required')">
+        Plan Management Organisation is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- CurrentStatus field - text input -->
+  <div *ngIf="fields.currentStatus">
+    <mat-form-field>
+      <mat-label>Current Service Status</mat-label>
+      <textarea matInput formControlName="currentStatus" (keyup.enter)="save()" required></textarea>
+      <mat-error *ngIf="form.get('currentStatus').getError('required')">
+        Current Service Status is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Clientisabletolegallyconsenttoservice field - checkbox -->
+  <div *ngIf="fields.clientisabletolegallyconsenttoservice">
+    <mat-checkbox labelPosition="after" formControlName="clientisabletolegallyconsenttoservice">Client is Able to Legally Consent to Service</mat-checkbox>
+  </div>
+
+
+  <!-- StatusReportPrint field - text input -->
+  <div *ngIf="fields.statusReportPrint">
+    <mat-form-field>
+      <mat-label>Status Report Print</mat-label>
+      <input type="number" matInput formControlName="statusReportPrint" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('statusReportPrint').getError('required')">
+        Status Report Print is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ServiceAgreementSignedandSaved field - checkbox -->
+  <div *ngIf="fields.serviceAgreementSignedandSaved">
+    <mat-checkbox labelPosition="after" formControlName="serviceAgreementSignedandSaved">Service Agreement Signed and Saved</mat-checkbox>
+  </div>
+
+
+  <!-- Region field - text input -->
+  <app-region-autocomplete *ngIf="fields.region" [formControl]="form.controls.region" [initial_region]="initial_region" ngDefaultControl>
+  </app-region-autocomplete>
+  <mat-error *ngIf="form.get('region').getError('required') && form.get('region').touched" style="font-size: 12px;">
+    Region is required
+  </mat-error>
+
+  <!-- RepeatReferral field - text input -->
+  <div *ngIf="fields.repeatReferral">
+    <mat-form-field>
+      <mat-label>Repeat Referral</mat-label>
+      <!-- <input matInput formControlName="repeatReferral" (keyup.enter)="save()" required> -->
+      <mat-select formControlName="repeatReferral" required>
+        <mat-option [value]="'TRUE'">
+          True
+        </mat-option>
+        <mat-option [value]="'FALSE'">
+          False
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('repeatReferral').getError('required')">
+        Repeat Referral is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ReferralDate field - text input -->
+  <div *ngIf="fields.referralDate">
+    <mat-form-field>
+      <mat-label>Referral Date</mat-label>
+      <input matInput formControlName="referralDate" (keyup.enter)="save()" [matDatepicker]="referralDate" required>
+      <mat-datepicker-toggle matSuffix [for]="referralDate"></mat-datepicker-toggle>
+      <mat-datepicker #referralDate></mat-datepicker>
+      <mat-error *ngIf="form.get('referralDate').getError('required')">
+        Referral Date is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Proda_checked field - text input -->
+  <div *ngIf="fields.proda_checked">
+    <mat-checkbox labelPosition="after" formControlName="proda_checked"
+                  title="Have we checked PRODA and made sure that this is not NDIA managed? We do this by attempting to add a Service Agreement."
+    >PRODA Checked?</mat-checkbox>
+  </div>
+
+  <!-- Plan_managed_funds_confirmed field - text input -->
+  <div *ngIf="fields.plan_managed_funds_confirmed">
+      <mat-checkbox labelPosition="after" formControlName="plan_managed_funds_confirmed"
+                    title="Have we reveived written confirmation from the Plan Management company / Self-manager that there are adequate funds to cover the Service?" matInput formControlName="plan_managed_funds_confirmed"
+      >Plan Managed Funds Confirmed?</mat-checkbox>
+  </div>
+
+  <!-- Service_last_confirmed field - text input -->
+  <div *ngIf="fields.service_last_confirmed">
+    <mat-form-field>
+      <mat-label>Service_last_confirmed</mat-label>
+      <input matInput formControlName="service_last_confirmed" [matDatepicker]="service_last_confirmed_DatePicker" (keyup.enter)="save()" required>
+      <mat-datepicker-toggle matSuffix [for]="service_last_confirmed_DatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #service_last_confirmed_DatePicker></mat-datepicker>
+      <mat-error *ngIf="form.get('service_last_confirmed').getError('required')">
+        Service Last confirmed is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="fields.people">
+    <!-- <mat-form-field appearance="none"> -->
+    <app-client-person-multi-autocomplete label="Important People" formControlName="people" ngDefaultControl></app-client-person-multi-autocomplete>
+    <!-- </mat-form-field> -->
+  </div>
+
+  <div *ngIf="fields.service_bookings">
+    <!-- <mat-form-field appearance="none"> -->
+      <app-service-booking-multi-autocomplete label="Service Bookings" formControlName="service_bookings" ngDefaultControl></app-service-booking-multi-autocomplete>
+    <!-- </mat-form-field> -->
+  </div>
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button class="btn-save">Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

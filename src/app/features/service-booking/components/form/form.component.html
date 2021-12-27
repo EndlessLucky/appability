@@ -1,0 +1,145 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+
+
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+
+ <!-- Lastmodified field - text input -->
+<!--  <div *ngIf="fields.lastmodified">-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Lastmodified</mat-label>-->
+<!--      <input matInput formControlName="lastmodified" (keyup.enter)="save()">-->
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+  <!-- Lastmodifiedby field - text input -->
+<!--  <div *ngIf="fields.lastmodifiedby">-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Lastmodifiedby</mat-label>-->
+<!--      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">-->
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+<!--  <app-client-autocomplete [formControl]="form.controls.client"></app-client-autocomplete>-->
+<!--   Client field - text input -->
+  <!-- TODO: pass client ID here -->
+  <div *ngIf="fields.client">
+    <mat-form-field>
+      <mat-label>Client</mat-label>
+      <input matInput formControlName="client" (keyup.enter)="save()" required>
+        <!--      <mat-icon matSuffix>person</mat-icon>-->
+        <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ServiceBookingNumber field - text input -->
+  <div *ngIf="fields.serviceBookingNumber">
+    <mat-form-field>
+      <mat-label>Service Booking Number</mat-label>
+      <input matInput formControlName="serviceBookingNumber" (keyup.enter)="save()" type="number" required>
+      <mat-error *ngIf="form.get('serviceBookingNumber').getError('required')">
+        Service Booking number is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Start field - text input -->
+  <div *ngIf="fields.start">
+    <mat-form-field>
+      <mat-label>Start</mat-label>
+      <input matInput formControlName="start" [matDatepicker]="start_DatePicker" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('start').getError('required')">
+        Start Date is required & date format.
+      </mat-error>
+      <mat-datepicker-toggle matSuffix [for]="start_DatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #start_DatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+
+  <!-- End field - text input -->
+  <div *ngIf="fields.end">
+    <mat-form-field>
+      <mat-label>End</mat-label>
+      <input matInput formControlName="end" [matDatepicker]="end_DatePicker" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('end').getError('required')">
+        End Date is required & date format.
+      </mat-error>
+      <mat-datepicker-toggle matSuffix [for]="end_DatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #end_DatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+
+  <!-- RevisedEnd field - text input -->
+  <div *ngIf="fields.revisedEnd">
+    <mat-form-field>
+      <mat-label>Revised End</mat-label>
+      <input matInput formControlName="revisedEnd" [matDatepicker]="revisedEnd_DatePicker" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('revisedEnd').getError('required')">
+        Revised End date is required & date format.
+      </mat-error>
+      <mat-datepicker-toggle matSuffix [for]="revisedEnd_DatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #revisedEnd_DatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+
+  <!-- Active field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="active">Active</mat-checkbox>
+  </div>
+
+
+  <!-- Isdraft field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="isdraft">Is draft</mat-checkbox>
+  </div>
+
+  <div>
+    <!-- <mat-form-field appearance="none"> -->
+      <app-service-booking-details-multi-autocomplete label="Service Booking Details" formControlName="details"></app-service-booking-details-multi-autocomplete>
+      <mat-error *ngIf="form.get('details').getError('required')" style="font-size: 12px;">
+        Service Booking Details are required
+      </mat-error>
+    <!-- </mat-form-field> -->
+  </div>
+
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button class="btn-save">Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

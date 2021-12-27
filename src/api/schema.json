@@ -1,0 +1,585 @@
+{
+   "info" : {
+      "version" : "1",
+      "title" : "Testing"
+   },
+   "tags" : [
+      {
+         "description" : "This is just a sample service to test REST API (reading, updating, retrieving and deleting sample entity data).",
+         "name" : "Data"
+      },
+      {
+         "name" : "Ping",
+         "description" : "This simple service stores pings in database (device id and timestamp)"
+      }
+   ],
+   "swagger" : "2.0",
+   "definitions" : {
+      "Data" : {
+         "properties" : {
+            "name" : {
+               "type" : "string"
+            },
+            "surname" : {
+               "type" : "string"
+            }
+         },
+         "type" : "object",
+         "required" : [
+            "name",
+            "surname"
+         ]
+      },
+      "Ping" : {
+         "type" : "object",
+         "required" : [
+            "timestamp",
+            "deviceId"
+         ],
+         "properties" : {
+            "timestamp" : {
+               "type" : "string"
+            },
+            "deviceId" : {
+               "type" : "string"
+            }
+         },
+         "example" : {
+            "timestamp" : "",
+            "deviceId" : ""
+         }
+      }
+   },
+   "paths" : {
+      "/ping/{ping_id}" : {
+         "patch" : {
+            "tags" : [
+               "Ping"
+            ],
+            "responses" : {
+               "404" : {
+                  "description" : "Not Found"
+               },
+               "415" : {
+                  "description" : "Unsupported Media Type"
+               },
+               "400" : {
+                  "description" : "Client Error"
+               },
+               "406" : {
+                  "description" : "Not Acceptable"
+               },
+               "422" : {
+                  "description" : "Unprocessable Entity"
+               },
+               "200" : {
+                  "schema" : {
+                     "type" : "object",
+                     "properties" : {
+                        "timestamp" : {
+                           "type" : "string"
+                        },
+                        "deviceId" : {
+                           "type" : "string"
+                        }
+                     },
+                     "example" : {
+                        "timestamp" : "",
+                        "deviceId" : ""
+                     }
+                  },
+                  "description" : "OK"
+               }
+            },
+            "description" : "Updating pings.",
+            "parameters" : [
+               {
+                  "type" : "string",
+                  "required" : true,
+                  "in" : "path",
+                  "name" : "ping_id",
+                  "description" : "URL parameter ping_id",
+                  "maximum" : 1,
+                  "minimum" : 0
+               },
+               {
+                  "in" : "body",
+                  "required" : true,
+                  "name" : "body",
+                  "schema" : {
+                     "$ref" : "#/definitions/Ping"
+                  }
+               }
+            ]
+         },
+         "delete" : {
+            "responses" : {
+               "404" : {
+                  "description" : "Not Found"
+               },
+               "415" : {
+                  "description" : "Unsupported Media Type"
+               },
+               "406" : {
+                  "description" : "Not Acceptable"
+               },
+               "204" : {
+                  "description" : "No Content"
+               }
+            },
+            "tags" : [
+               "Ping"
+            ],
+            "description" : "Deleting ping from database.",
+            "parameters" : [
+               {
+                  "in" : "path",
+                  "required" : true,
+                  "type" : "string",
+                  "name" : "ping_id",
+                  "maximum" : 1,
+                  "description" : "URL parameter ping_id",
+                  "minimum" : 0
+               }
+            ]
+         },
+         "get" : {
+            "parameters" : [
+               {
+                  "name" : "ping_id",
+                  "description" : "URL parameter ping_id",
+                  "maximum" : 1,
+                  "type" : "string",
+                  "required" : true,
+                  "in" : "path",
+                  "minimum" : 0
+               }
+            ],
+            "responses" : {
+               "200" : {
+                  "description" : "OK",
+                  "schema" : {
+                     "type" : "object",
+                     "example" : {
+                        "deviceId" : "",
+                        "timestamp" : ""
+                     },
+                     "properties" : {
+                        "timestamp" : {
+                           "type" : "string"
+                        },
+                        "deviceId" : {
+                           "type" : "string"
+                        }
+                     }
+                  }
+               },
+               "415" : {
+                  "description" : "Unsupported Media Type"
+               },
+               "404" : {
+                  "description" : "Not Found"
+               },
+               "406" : {
+                  "description" : "Not Acceptable"
+               }
+            },
+            "tags" : [
+               "Ping"
+            ],
+            "description" : "Retrieving pings."
+         },
+         "put" : {
+            "description" : "Updating pings.",
+            "responses" : {
+               "200" : {
+                  "description" : "OK",
+                  "schema" : {
+                     "properties" : {
+                        "timestamp" : {
+                           "type" : "string"
+                        },
+                        "deviceId" : {
+                           "type" : "string"
+                        }
+                     },
+                     "example" : {
+                        "deviceId" : "",
+                        "timestamp" : ""
+                     },
+                     "type" : "object"
+                  }
+               },
+               "422" : {
+                  "description" : "Unprocessable Entity"
+               },
+               "406" : {
+                  "description" : "Not Acceptable"
+               },
+               "400" : {
+                  "description" : "Client Error"
+               },
+               "415" : {
+                  "description" : "Unsupported Media Type"
+               },
+               "404" : {
+                  "description" : "Not Found"
+               }
+            },
+            "tags" : [
+               "Ping"
+            ],
+            "parameters" : [
+               {
+                  "minimum" : 0,
+                  "required" : true,
+                  "in" : "path",
+                  "type" : "string",
+                  "name" : "ping_id",
+                  "description" : "URL parameter ping_id",
+                  "maximum" : 1
+               },
+               {
+                  "in" : "body",
+                  "required" : true,
+                  "schema" : {
+                     "$ref" : "#/definitions/Ping"
+                  },
+                  "name" : "body"
+               }
+            ]
+         }
+      },
+      "/data/{data_id}" : {
+         "patch" : {
+            "responses" : {
+               "415" : {
+                  "description" : "Unsupported Media Type"
+               },
+               "404" : {
+                  "description" : "Not Found"
+               },
+               "200" : {
+                  "description" : "OK",
+                  "schema" : {
+                     "type" : "object",
+                     "example" : {
+                        "name" : "",
+                        "surname" : ""
+                     },
+                     "properties" : {
+                        "surname" : {
+                           "type" : "string"
+                        },
+                        "name" : {
+                           "type" : "string"
+                        }
+                     }
+                  }
+               },
+               "422" : {
+                  "description" : "Unprocessable Entity"
+               },
+               "406" : {
+                  "description" : "Not Acceptable"
+               },
+               "400" : {
+                  "description" : "Client Error"
+               }
+            },
+            "tags" : [
+               "Data"
+            ],
+            "description" : "This method updates the particular data entity.",
+            "parameters" : [
+               {
+                  "minimum" : 0,
+                  "name" : "data_id",
+                  "maximum" : 1,
+                  "description" : "URL parameter data_id",
+                  "type" : "string",
+                  "required" : true,
+                  "in" : "path"
+               },
+               {
+                  "name" : "body",
+                  "schema" : {
+                     "$ref" : "#/definitions/Data"
+                  },
+                  "in" : "body",
+                  "required" : true
+               }
+            ]
+         },
+         "put" : {
+            "parameters" : [
+               {
+                  "minimum" : 0,
+                  "name" : "data_id",
+                  "maximum" : 1,
+                  "description" : "URL parameter data_id",
+                  "type" : "string",
+                  "required" : true,
+                  "in" : "path"
+               },
+               {
+                  "name" : "body",
+                  "schema" : {
+                     "$ref" : "#/definitions/Data"
+                  },
+                  "in" : "body",
+                  "required" : true
+               }
+            ],
+            "description" : "This method updates the entity in the database.",
+            "responses" : {
+               "415" : {
+                  "description" : "Unsupported Media Type"
+               },
+               "404" : {
+                  "description" : "Not Found"
+               },
+               "200" : {
+                  "schema" : {
+                     "type" : "object",
+                     "example" : {
+                        "name" : "",
+                        "surname" : ""
+                     },
+                     "properties" : {
+                        "surname" : {
+                           "type" : "string"
+                        },
+                        "name" : {
+                           "type" : "string"
+                        }
+                     }
+                  },
+                  "description" : "OK"
+               },
+               "422" : {
+                  "description" : "Unprocessable Entity"
+               },
+               "406" : {
+                  "description" : "Not Acceptable"
+               },
+               "400" : {
+                  "description" : "Client Error"
+               }
+            },
+            "tags" : [
+               "Data"
+            ]
+         },
+         "get" : {
+            "parameters" : [
+               {
+                  "minimum" : 0,
+                  "type" : "string",
+                  "in" : "path",
+                  "required" : true,
+                  "description" : "URL parameter data_id",
+                  "maximum" : 1,
+                  "name" : "data_id"
+               }
+            ],
+            "tags" : [
+               "Data"
+            ],
+            "responses" : {
+               "415" : {
+                  "description" : "Unsupported Media Type"
+               },
+               "404" : {
+                  "description" : "Not Found"
+               },
+               "200" : {
+                  "schema" : {
+                     "properties" : {
+                        "surname" : {
+                           "type" : "string"
+                        },
+                        "name" : {
+                           "type" : "string"
+                        }
+                     },
+                     "example" : {
+                        "name" : "",
+                        "surname" : ""
+                     },
+                     "type" : "object"
+                  },
+                  "description" : "OK"
+               },
+               "406" : {
+                  "description" : "Not Acceptable"
+               }
+            },
+            "description" : "GET Method retrieves one or many data elements."
+         },
+         "delete" : {
+            "description" : "This method deletes the data in the database.",
+            "responses" : {
+               "406" : {
+                  "description" : "Not Acceptable"
+               },
+               "204" : {
+                  "description" : "No Content"
+               },
+               "404" : {
+                  "description" : "Not Found"
+               },
+               "415" : {
+                  "description" : "Unsupported Media Type"
+               }
+            },
+            "tags" : [
+               "Data"
+            ],
+            "parameters" : [
+               {
+                  "description" : "URL parameter data_id",
+                  "maximum" : 1,
+                  "name" : "data_id",
+                  "type" : "string",
+                  "in" : "path",
+                  "required" : true,
+                  "minimum" : 0
+               }
+            ]
+         }
+      },
+      "/ping" : {
+         "get" : {
+            "description" : "Retrieving ping Collection.",
+            "tags" : [
+               "Ping"
+            ],
+            "responses" : {
+               "200" : {
+                  "schema" : {
+                     "properties" : {
+                        "deviceId" : {
+                           "type" : "string"
+                        },
+                        "timestamp" : {
+                           "type" : "string"
+                        }
+                     },
+                     "example" : {
+                        "deviceId" : "",
+                        "timestamp" : ""
+                     },
+                     "type" : "object"
+                  },
+                  "description" : "OK"
+               },
+               "415" : {
+                  "description" : "Unsupported Media Type"
+               },
+               "406" : {
+                  "description" : "Not Acceptable"
+               }
+            }
+         },
+         "post" : {
+            "parameters" : [
+               {
+                  "schema" : {
+                     "$ref" : "#/definitions/Ping"
+                  },
+                  "name" : "body",
+                  "in" : "body",
+                  "required" : true
+               }
+            ],
+            "responses" : {
+               "406" : {
+                  "description" : "Not Acceptable"
+               },
+               "201" : {
+                  "schema" : {
+                     "type" : "object",
+                     "example" : {
+                        "timestamp" : "",
+                        "deviceId" : ""
+                     },
+                     "properties" : {
+                        "deviceId" : {
+                           "type" : "string"
+                        },
+                        "timestamp" : {
+                           "type" : "string"
+                        }
+                     }
+                  },
+                  "description" : "Created"
+               },
+               "400" : {
+                  "description" : "Client Error"
+               },
+               "422" : {
+                  "description" : "Unprocessable Entity"
+               },
+               "415" : {
+                  "description" : "Unsupported Media Type"
+               }
+            },
+            "tags" : [
+               "Ping"
+            ],
+            "description" : "Storing ping collection."
+         }
+      },
+      "/data" : {
+         "post" : {
+            "responses" : {
+               "406" : {
+                  "description" : "Not Acceptable"
+               },
+               "400" : {
+                  "description" : "Client Error"
+               },
+               "201" : {
+                  "description" : "Created"
+               },
+               "415" : {
+                  "description" : "Unsupported Media Type"
+               },
+               "422" : {
+                  "description" : "Unprocessable Entity"
+               }
+            },
+            "tags" : [
+               "Data"
+            ],
+            "parameters" : [
+               {
+                  "schema" : {
+                     "$ref" : "#/definitions/Data"
+                  },
+                  "name" : "body",
+                  "required" : true,
+                  "in" : "body"
+               }
+            ]
+         },
+         "get" : {
+            "responses" : {
+               "406" : {
+                  "description" : "Not Acceptable"
+               },
+               "200" : {
+                  "description" : "OK"
+               },
+               "415" : {
+                  "description" : "Unsupported Media Type"
+               }
+            },
+            "tags" : [
+               "Data"
+            ]
+         }
+      }
+   }
+}

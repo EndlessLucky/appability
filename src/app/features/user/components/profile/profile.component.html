@@ -1,0 +1,19 @@
+<h1>User profile</h1>
+
+<ng-container *ngIf="user | async as u">
+  <h2>ID</h2>
+
+  {{u.id}}
+
+  <h2>Username</h2>
+  {{u.username}}
+  <h2>Email</h2>
+  {{u.email}}
+  <h2>Role</h2>
+  {{u.role}}
+
+  <h2>Password</h2>
+
+  <button routerLink="/user/password" mat-raised-button>Change</button>
+</ng-container>
+

@@ -1,0 +1,21 @@
+#main-area {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem; }
+
+#toolbar-main {
+  justify-content: space-between; }
+  #toolbar-main .navitem {
+    padding-right: 1rem; }
+  #toolbar-main .mat-icon-inline {
+    position: relative;
+    top: 3px;
+    padding-right: 0.15rem; }
+  #toolbar-main #app-title {
+    position: relative;
+    top: 3px; }
+
+.link {
+  cursor: pointer; }
+
+.mat-sidenav-container {
+  height: 100vh; }

@@ -1,0 +1,27 @@
+<h1>Change user role</h1>
+
+<!-- Sample async autocomplete field returning objects (you may choose which value to display using [displayWith] -->
+<div>
+  <mat-form-field>
+    <mat-label>Role</mat-label>
+    <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="roleElement">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="getUserRole">
+      <ng-container *ngIf="$filtered | async as users; else isLoading">
+        <mat-option *ngFor="let user of users" [value]="user">
+          <span>{{user.id}} - <b>{{user.role}}</b></span>
+        </mat-option>
+      </ng-container>
+      <ng-template #isLoading>
+        <mat-option *ngIf="isLoading" class="is-loading" disabled="disabled">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-option>
+      </ng-template>
+
+    </mat-autocomplete>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <ng-container *ngIf="roleElement.value">
+    <h5>Selected ID: {{roleElement.value ? roleElement.value.id : ''}}</h5>
+  </ng-container>
+</div>

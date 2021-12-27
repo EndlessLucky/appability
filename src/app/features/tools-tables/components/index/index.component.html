@@ -1,0 +1,71 @@
+<h1>Table information</h1>
+
+<mat-form-field appearance="fill">
+  <mat-label>Tables</mat-label>
+
+
+  <mat-select (valueChange)="updateInfo($event)" placeholder="Select table">
+    <ng-container *ngIf="table$ | async as tables">
+    <mat-option title="{{table.class}}" *ngFor="let table of tables" [value]="table.name">
+      {{table.name}}
+    </mat-option>
+  </ng-container>
+  </mat-select>
+
+</mat-form-field>
+
+
+<mat-accordion>
+  <mat-expansion-panel  *ngIf="sampleRow$ | async as sampleRow">
+    <mat-expansion-panel-header>
+      <h2>Sample row</h2>
+    </mat-expansion-panel-header>
+    <div>
+      <pre>{{sampleRow | json}} </pre>
+    </div>
+  </mat-expansion-panel>
+
+  <ng-container *ngIf="tableInfo$ | async as tableInfo">
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <h2>Relations</h2>
+    </mat-expansion-panel-header>
+    <ng-container *ngIf="tableInfo.relations.length; else noRelations">
+      <ul>
+        <li *ngFor="let relation of tableInfo.relations">
+          <h4>`{{relation.table_name}}`.`{{relation.column_name}}` => `{{relation.referenced_table_name}}`.`{{relation.referenced_column_name}}`</h4>
+          <div>
+          <pre>{{relation.annotation}}
+          </pre>
+          </div>
+        </li>
+      </ul>
+    </ng-container>
+    <ng-template #noRelations>
+      <h2>No Relations</h2>
+    </ng-template>
+  </mat-expansion-panel>
+
+    <mat-expansion-panel *ngIf="tableInfo.hasExtension">
+      <mat-expansion-panel-header>
+        <h2>Custom fields</h2>
+      </mat-expansion-panel-header>
+      <ol>
+        <li *ngFor="let column of tableInfo.extensionInfo.properties">{{column}}</li>
+      </ol>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel  *ngIf="sampleRow$ | async as sampleRow">
+      <mat-expansion-panel-header>
+        <h2>Table information</h2>
+      </mat-expansion-panel-header>
+      <div>
+        <pre>{{tableInfo | json}}</pre>
+      </div>
+    </mat-expansion-panel>
+
+  </ng-container>
+
+</mat-accordion>

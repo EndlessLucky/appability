@@ -1,0 +1,127 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- Lastmodified field - Datepicker -->
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="lastmodified" [matDatepicker]="LastmodifiedDatepicker">
+      <mat-datepicker-toggle matSuffix [for]="LastmodifiedDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #LastmodifiedDatepicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+
+  <!-- Lastmodifiedby field - text input -->
+  <div *ngIf="fields.lastmodifiedby">
+    <mat-form-field>
+      <mat-label>Lastmodifiedby</mat-label>
+      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- RateName field - text input -->
+  <div *ngIf="fields.rateName">
+    <mat-form-field>
+      <mat-label>Rate Name</mat-label>
+      <input matInput formControlName="rateName" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ProjectRate field - text input -->
+  <div *ngIf="fields.projectRate">
+    <mat-form-field>
+      <mat-label>Project Rate</mat-label>
+      <input matInput formControlName="projectRate" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ClientRate0 field - text input -->
+  <div *ngIf="fields.clientRate0">
+    <mat-form-field>
+      <mat-label>Client Rate0</mat-label>
+      <input matInput formControlName="clientRate0" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ClientRate8 field - text input -->
+  <div *ngIf="fields.clientRate8">
+    <mat-form-field>
+      <mat-label>Client Rate8</mat-label>
+      <input matInput formControlName="clientRate8" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ClientRate16 field - text input -->
+  <div *ngIf="fields.clientRate16">
+    <mat-form-field>
+      <mat-label>Client Rate16</mat-label>
+      <input matInput formControlName="clientRate16" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ClientRate24 field - text input -->
+  <div *ngIf="fields.clientRate24">
+    <mat-form-field>
+      <mat-label>Client Rate24</mat-label>
+      <input matInput formControlName="clientRate24" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- HelpLoading field - text input -->
+  <div *ngIf="fields.helpLoading">
+    <mat-form-field>
+      <mat-label>Help Loading</mat-label>
+      <input matInput formControlName="helpLoading" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button>Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

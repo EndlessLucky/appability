@@ -1,0 +1,75 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <div>
+    <app-file-upload formControlName="img" label="Avatar image"></app-file-upload>
+    <mat-error *ngIf="form.get('img').getError('required')">
+      Avartar image is required
+    </mat-error>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('name').getError('required')">
+        Name is required
+      </mat-error>
+      <mat-error *ngIf="form.get('name').getError('minlength')">
+        Name length should be greater than 2
+      </mat-error>
+      <mat-icon matSuffix>person</mat-icon>
+      <mat-hint align="end">min 3 characters</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Surname</mat-label>
+      <input matInput formControlName="surname" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('surname').getError('required')">
+        Surname is required
+      </mat-error>
+      <mat-error *ngIf="form.get('surname').getError('minlength')">
+        Surname length should be greater than 2
+      </mat-error>
+      <mat-icon matSuffix>people</mat-icon>
+      <mat-hint align="end">min 3 characters</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="none">
+      <app-multi-autocomplete label="Related users" formControlName="datas"></app-multi-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <ul class="list-inline list-inline-buttons">
+    <li>
+      <button (click)="goBack()" mat-raised-button>Close</button>
+    </li>
+    <li>
+      <button (click)="form.reset()" mat-raised-button>Reset</button>
+    </li>
+    <li>
+      <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button class="btn-save">Save</button>
+    </li>
+  </ul>
+
+</form>
+
+<pre>{{ form.value | json }}</pre>
+
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

@@ -1,0 +1,105 @@
+<h1>NDIS Managed Payment Requests Outcome Upload</h1>
+
+<div>
+
+  <mat-card>
+    <mat-card-header>
+<!--      <mat-card-title>Files</mat-card-title>-->
+    </mat-card-header>
+    <mat-card-content style="display: grid">
+
+<!--      <div class="image-box">-->
+<!--        <div class="layer2"></div>-->
+<!--        <div class="layer1">-->
+<!--          <img src="https://via.placeholder.com/600/000000/FFFFFF?Text=." alt="placeholder" style="max-width: 100%; object-fit: cover" />-->
+<!--        </div>-->
+<!---->
+<!--        <div class="layer3">-->
+<!--          <mat-progress-spinner value="85">-->
+<!--          </mat-progress-spinner>-->
+<!--        </div>-->
+<!--        <div class="layer3">77</div>-->
+<!--      </div>-->
+
+        <div *ngIf="files.length">
+            <div *ngFor="let file of files">
+              <div *ngIf="file.isImage" class="image-box" title="{{file.data.name}} ({{file.data.size | filesize}})">
+                <ng-container *ngIf="file.progress < 100">
+                  <div class="layer2 overlay"></div>
+
+
+                  <div class="layer3">
+                    <mat-progress-spinner [value]="file.progress" class="mat-spinner-neutral-no"></mat-progress-spinner>
+                  </div>
+                  <div style="text-align: center">
+                    <span>{{file.progress}}% of {{file.data.size | filesize}}</span>
+                  </div>
+                  <!--                <span style="float: left">{{file.data.name}}</span>-->
+
+                </ng-container>
+                <div class="layer1">
+                  <img style="max-width: 300px" src="{{file.src}}" alt="noImage" title="{{file.data.name}}" />
+                </div>
+                <!--                <span *ngIf="urls[file.data.name]">-->
+                <!--              <img style="max-width: 50px" src="http://localhost:8083/drive/{{urls[file.data.name]}}" alt="nodata" />-->
+                <!--                </span>-->
+
+
+              </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div style="margin-left: 0.5em;">
+        <button mat-raised-button (click)="onFileSelect()">
+          <mat-icon>file_upload</mat-icon>
+          Choose or drag the CSV file here
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+
+  <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple" accept="{{allowedMimeTypes}}"
+         style="display:none;"/></div>
+
+
+<br>
+<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="16px">
+
+    <mat-card fxFlex.lt-md="100%" fxFlex="50%"  *ngIf="paidList.length">
+      <mat-card-title><mat-icon color="primary">check_online</mat-icon> Paid  ({{paidList.length}})</mat-card-title>
+      <mat-card-content>
+          <p>The following NDIS Managed payment requests have now been marked as PAID:</p>
+          <pre><div *ngFor="let item of paidList">{{item}}</div></pre>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card fxFlex.lt-md="100%" fxFlex="50%"  *ngIf="unpaidList.length">
+      <mat-card-title><mat-icon color="warn">error_outline</mat-icon> Unpaid ({{unpaidList.length}})</mat-card-title>
+
+      <mat-card-content>
+        <p>Not SUCCESSFUL NDIS Managed payment requests in the file:</p>
+        <pre><div *ngFor="let item of unpaidList">{{item}}</div></pre>
+      </mat-card-content>
+    </mat-card>
+
+</div>
+
+
+
+
+<!--<mat-card-content *ngIf="!paidList.length || unpaidList.length">-->
+<!--  <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-around center">-->
+
+<!--  <div fxLayout="column" *ngIf="!paidList.length">-->
+
+<!--  </div>-->
+
+<!--  <div fxLayout="column" *ngIf="!unpaidList.length">-->
+
+<!--  </div>-->
+<!--  </div>-->
+<!--</mat-card-content>-->
+
+
+<!--<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>-->

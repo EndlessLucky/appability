@@ -1,0 +1,156 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+
+
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- Supportcategoryname field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Supportcategoryname</mat-label>
+      <input matInput formControlName="supportcategoryname" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('supportcategoryname').getError('required')">
+        Supportcategoryname is required
+      </mat-error>
+      <mat-error *ngIf="form.get('supportcategoryname').getError('isExist')">
+        Supportcategoryname is already existed
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Supportitemdescription field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Supportitemdescription</mat-label>
+      <input matInput formControlName="supportitemdescription" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('supportitemdescription').getError('required')">
+        Supportitemdescription is required
+      </mat-error>
+      <mat-error *ngIf="form.get('supportitemdescription').getError('isExist')">
+        SupportItemDescription is already existed
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- HourlyRate field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Hourly Rate</mat-label>
+      <input matInput formControlName="hourlyRate" (keyup.enter)="save()" type="number" required>
+      <mat-error *ngIf="form.get('hourlyRate').getError('required')">
+        Hourly Rate is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Isclientbillable field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="isclientbillable">Isclientbillable</mat-checkbox>
+  </div>
+
+
+  <!-- Key field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Key</mat-label>
+      <input matInput formControlName="key" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('key').getError('required')">
+        Key is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Active field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="active">Active</mat-checkbox>
+  </div>
+
+
+  <!-- End field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>End</mat-label>
+      <input matInput formControlName="end" (keyup.enter)="save()" required [matDatepicker]="end">
+      <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+      <mat-datepicker #end></mat-datepicker>
+      <mat-error *ngIf="form.get('end').getError('required')">
+        End is required & date format
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- RegistrationGroupName field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Registration Group Name</mat-label>
+      <input matInput formControlName="registrationGroupName" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('registrationGroupName').getError('required')">
+        Registration Group Name is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- 2019HourlyRate field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>a2019Hourly Rate</mat-label>
+      <input matInput formControlName="a2019HourlyRate" (keyup.enter)="save()" type="number" required>
+      <mat-error *ngIf="form.get('a2019HourlyRate').getError('required')">
+        A2019Hourly Rate is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+
+
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button class="btn-save">Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<!-- @todo Just for testing purposes, remove later -->
+<button mat-raised-button (click)="isUnique()">Is SupportItemDescription Unique?</button>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

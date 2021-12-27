@@ -1,0 +1,173 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+
+
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- Lastmodified field - text input -->
+<!--  <div *ngIf="fields.lastmodified">-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Lastmodified</mat-label>-->
+<!--      <input matInput formControlName="lastmodified" (keyup.enter)="save()">-->
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+  <!-- Lastmodifiedby field - text input -->
+<!--  <div *ngIf="fields.lastmodifiedby">-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Lastmodifiedby</mat-label>-->
+<!--      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">-->
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+  <!-- ServiceBooking field - text input -->
+  <!-- TODO: pass service booking ID here -->
+  <!-- <div *ngIf="fields.serviceBooking">
+    <mat-form-field>
+      <mat-label>Service Booking</mat-label>
+      <input matInput formControlName="serviceBooking" (keyup.enter)="save()">
+    </mat-form-field>
+  </div> -->
+
+  <!-- SupportBudget field - text input -->
+  <div *ngIf="fields.supportBudget">
+    <mat-form-field>
+      <mat-label>Support Budget</mat-label>
+      <input matInput formControlName="supportBudget" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('supportBudget').getError('required')">
+        Support Budget is required.
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- SupportItemId field - text input -->
+<!--  <div *ngIf="fields.supportItemId">-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Support Item Id</mat-label>-->
+<!--      <input matInput formControlName="supportItemId" (keyup.enter)="save()">-->
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+  <div *ngIf="fields.supportItemId">
+    <app-support-item-autocomplete [formControl]="form.controls.supportItemId">
+    </app-support-item-autocomplete>
+    <mat-error *ngIf="form.get('supportItemId').getError('required') && form.get('supportItemId').touched" style="font-size: 12px;">
+      SupportedItem Id is required.
+    </mat-error>
+  </div>
+
+  <!-- SupportItemName field - text input -->
+  <!-- <div *ngIf="fields.supportItemName">
+    <mat-form-field>
+      <mat-label>Support Item Name</mat-label>
+      <input matInput formControlName="supportItemName" (keyup.enter)="save()">
+    </mat-form-field>
+  </div> -->
+
+
+  <!-- DescriptionOfServicesOutcomeMeasures field - text input -->
+  <div *ngIf="fields.descriptionOfServicesOutcomeMeasures">
+    <mat-form-field>
+      <mat-label>Description Of Services Outcome Measures</mat-label>
+      <textarea matInput formControlName="descriptionOfServicesOutcomeMeasures" (keyup.enter)="save()" required></textarea>
+      <mat-error *ngIf="form.get('descriptionOfServicesOutcomeMeasures').getError('required')">
+        DescriptionOfServicesOutcomeMeasures is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Hours field - text input -->
+  <div *ngIf="fields.hours">
+    <mat-form-field>
+      <mat-label>Hours</mat-label>
+      <input matInput formControlName="hours" (keyup.enter)="save()" type="time" required>
+      <mat-error *ngIf="form.get('hours').getError('required')">
+        Hours is required & time format.
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- AllocatedAmount field - text input -->
+  <div *ngIf="fields.allocatedAmount">
+    <mat-form-field>
+      <mat-label>Allocated Amount</mat-label>
+      <input matInput formControlName="allocatedAmount" (keyup.enter)="save()" type="number" required>
+      <mat-error *ngIf="form.get('allocatedAmount').getError('required')">
+        AllocatedAmount is required.
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="fields.fundsManagement">
+    <app-ability-consultants-referral-form-funds-management [formControl]="form.controls.fundsManagement">
+
+    </app-ability-consultants-referral-form-funds-management>
+    <mat-error *ngIf="form.get('fundsManagement').getError('required') && form.get('fundsManagement').touched" style="font-size: 12px;">
+      FundsManagement is required
+    </mat-error>
+  </div>
+
+  <!-- FundsManagement field - text input -->
+<!--  <div *ngIf="fields.fundsManagement">-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Funds Management</mat-label>-->
+<!--      <input matInput formControlName="fundsManagement" (keyup.enter)="save()">-->
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+  <!-- EnteredPre3July2019 field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="enteredPre3July2019">Entered Pre3July2019</mat-checkbox>
+  </div>
+
+
+
+
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button class="btn-save">Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

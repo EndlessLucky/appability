@@ -1,0 +1,3 @@
+interface RestApiDataSourceInterface {
+    searchableFields: string[];
+}

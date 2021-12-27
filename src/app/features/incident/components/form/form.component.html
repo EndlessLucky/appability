@@ -1,0 +1,146 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- Lastmodified field - Datepicker -->
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="lastmodified" [matDatepicker]="LastmodifiedDatepicker">
+      <mat-datepicker-toggle matSuffix [for]="LastmodifiedDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #LastmodifiedDatepicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+
+  <!-- Lastmodifiedby field - text input -->
+  <div *ngIf="fields.lastmodifiedby">
+    <mat-form-field>
+      <mat-label>Lastmodifiedby</mat-label>
+      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- PersonReporting field - text input -->
+  <div *ngIf="fields.personReporting">
+    <mat-form-field>
+      <mat-label>Person Reporting</mat-label>
+      <input matInput formControlName="personReporting" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Date field - Datepicker -->
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="date" [matDatepicker]="DateDatepicker">
+      <mat-datepicker-toggle matSuffix [for]="DateDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #DateDatepicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+
+  <!-- TimeOfIncident field - text input -->
+  <div *ngIf="fields.timeOfIncident">
+    <mat-form-field>
+      <mat-label>Time Of Incident</mat-label>
+      <input matInput formControlName="timeOfIncident" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- IncidentAddress field - text input -->
+  <div *ngIf="fields.incidentAddress">
+    <mat-form-field>
+      <mat-label>Incident Address</mat-label>
+      <input matInput formControlName="incidentAddress" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- WhereExactly field - text input -->
+  <div *ngIf="fields.whereExactly">
+    <mat-form-field>
+      <mat-label>Where Exactly</mat-label>
+      <input matInput formControlName="whereExactly" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- BriefTitle field - text input -->
+  <div *ngIf="fields.briefTitle">
+    <mat-form-field>
+      <mat-label>Brief Title</mat-label>
+      <input matInput formControlName="briefTitle" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- DetailedDescriptionOfWhatHappened field - text input -->
+  <div *ngIf="fields.detailedDescriptionOfWhatHappened">
+    <mat-form-field>
+      <mat-label>Detailed Description Of What Happened</mat-label>
+      <input matInput formControlName="detailedDescriptionOfWhatHappened" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Status field - text input -->
+  <div *ngIf="fields.status">
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <input matInput formControlName="status" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Image field - text input -->
+  <div *ngIf="fields.image">
+    <mat-form-field>
+      <mat-label>Image</mat-label>
+      <input matInput formControlName="image" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button>Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

@@ -1,0 +1,10 @@
+.example-card {
+  mat-card-content {
+    text-align: center;
+    cursor: pointer;
+  }
+
+  mat-icon.mat-card-image {
+    font-size: 72px;
+  }
+}

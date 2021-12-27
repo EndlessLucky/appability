@@ -1,0 +1,272 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+
+  <!-- Id field - text input -->
+<!--  <div>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Id</mat-label>-->
+<!--      <input matInput formControlName="id" (keyup.enter)="save()">-->
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+  <!-- Lastmodified field - text input -->
+<!--  <div>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Lastmodified</mat-label>-->
+<!--      <input matInput formControlName="lastmodified" (keyup.enter)="save()">-->
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+  <!-- Lastmodifiedby field - text input -->
+<!--  <div>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Lastmodifiedby</mat-label>-->
+<!--      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">-->
+<!--            <mat-icon matSuffix>person</mat-icon>-->
+<!--            <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+  <!-- Name field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('name').getError('required')">
+        Name is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Image field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Image</mat-label>
+      <input matInput formControlName="image" (keyup.enter)="save()" required>
+      <!-- <app-file-upload formControlName="image" label="Avatar image *"></app-file-upload> -->
+      <mat-error *ngIf="form.get('image').getError('required')">
+        Image is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Abn field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Abn</mat-label>
+      <input matInput formControlName="abn" (keyup.enter)="save()" required type="tel" placeholder="12 123 123 123">
+      <mat-error *ngIf="form.get('abn').getError('required')">
+        Abn is required
+      </mat-error>
+      <mat-error *ngIf="form.get('abn').getError('pattern')">
+        Abn should be formated as 12 123 123 123
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ReportingOfficer field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Reporting Officer</mat-label>
+      <input matInput formControlName="reportingOfficer" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('reportingOfficer').getError('required')">
+        Reporting Officer is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- IsThisAPlanManagerWeNeedToInvoice field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Is This A Plan Manager We Need To Invoice</mat-label>
+      <!-- <input matInput formControlName="isThisAPlanManagerWeNeedToInvoice" (keyup.enter)="save()" required> -->
+      <mat-select formControlName="isThisAPlanManagerWeNeedToInvoice">
+        <mat-option [value]="'TRUE'">
+          True
+        </mat-option>
+        <mat-option [value]="'FALSE'">
+          False
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('isThisAPlanManagerWeNeedToInvoice').getError('required')">
+        IsThisAPlanManagerWeNeedToInvoice is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- InvoicingDetailsConfirmedAndEnteredIntoXero field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Invoicing Details Confirmed And Entered Into Xero</mat-label>
+      <!-- <input matInput formControlName="invoicingDetailsConfirmedAndEnteredIntoXero" (keyup.enter)="save()" required> -->
+      <mat-select formControlName="invoicingDetailsConfirmedAndEnteredIntoXero">
+        <mat-option [value]="'TRUE'">
+          True
+        </mat-option>
+        <mat-option [value]="'FALSE'">
+          False
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('invoicingDetailsConfirmedAndEnteredIntoXero').getError('required')">
+        InvoicingDetailsConfirmedAndEnteredIntoXero is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- IsThisAnOrganisationWithRpa field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Is This An Organisation With Rpa</mat-label>
+      <!-- <input matInput formControlName="isThisAnOrganisationWithRpa" (keyup.enter)="save()" required> -->
+      <mat-select formControlName="isThisAnOrganisationWithRpa">
+        <mat-option [value]="'TRUE'">
+          True
+        </mat-option>
+        <mat-option [value]="'FALSE'">
+          False
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('isThisAnOrganisationWithRpa').getError('required')">
+        IsThisAnOrganisationWithRpa is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- NdiaRegisrationNumber field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Ndia Regisration Number</mat-label>
+      <input matInput formControlName="ndiaRegisrationNumber" (keyup.enter)="save()" type="number" required>
+      <mat-error *ngIf="form.get('ndiaRegisrationNumber').getError('required')">
+        Ndia Regisration Number is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- NqscRegistrationNumber field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Nqsc Registration Number</mat-label>
+      <input matInput formControlName="nqscRegistrationNumber" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('nqscRegistrationNumber').getError('required')">
+        Nqsc Regisration Number is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Employsourstaff field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Employsourstaff</mat-label>
+      <!-- <input matInput formControlName="employsourstaff" (keyup.enter)="save()" required> -->
+      <mat-select formControlName="employsourstaff">
+        <mat-option [value]="'TRUE'">
+          True
+        </mat-option>
+        <mat-option [value]="'FALSE'">
+          False
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('employsourstaff').getError('required')">
+        Employsourstaff is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Contractstous field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Contractstous</mat-label>
+      <!-- <input matInput formControlName="contractstous" (keyup.enter)="save()" required> -->
+      <mat-select formControlName="contractstous">
+        <mat-option [value]="'TRUE'">
+          True
+        </mat-option>
+        <mat-option [value]="'FALSE'">
+          False
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('contractstous').getError('required')">
+        Contractstous is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Principalcontractor field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Principalcontractor</mat-label>
+      <input matInput formControlName="principalcontractor" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('principalcontractor').getError('required')">
+        Principalcontractor is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button class="btn-save">Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

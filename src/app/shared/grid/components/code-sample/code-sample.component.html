@@ -1,0 +1,15 @@
+<button *ngIf="expandable" (click)="toggleExpand()"><mat-icon>code</mat-icon></button>
+
+<ng-container *ngIf="!expandable || expanded">
+<h1>{{title}}</h1>
+<button color="{{color}}" mat-raised-button appCopyClipboard="{{code}}" (copied)="notify($event)"><mat-icon>{{icon}}</mat-icon> {{value}}</button>
+<div (dblclick)="copyValues()" (tap)="copyValues()">
+  <textarea disabled title="Double click to edit" cols="{{cols}}" rows="{{rows}}" >{{code}}</textarea>
+</div>
+<ng-container *ngIf="hasForm">
+  <div>
+    <textarea cols="{{cols}}" rows="{{rows}}" [(ngModel)]="jsonStr"></textarea>
+  </div>
+  <button mat-raised-button value="{{value}}" (click)="fillForm()">Fill form from JSON</button>
+</ng-container>
+</ng-container>

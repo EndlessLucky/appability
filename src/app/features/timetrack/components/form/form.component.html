@@ -1,0 +1,304 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+
+
+  <!-- Id field - text input -->
+  <div *ngIf="fields.id">
+    <mat-form-field>
+      <mat-label>Id</mat-label>
+      <input matInput formControlName="id" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- LastModified field - text input -->
+  <div *ngIf="fields.lastModified">
+    <mat-form-field>
+      <mat-label>Last Modified</mat-label>
+      <input matInput formControlName="lastModified" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Lastmodifiedby field - text input -->
+  <div *ngIf="fields.lastmodifiedby">
+    <mat-form-field>
+      <mat-label>Lastmodifiedby</mat-label>
+      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Staff field - text input -->
+  <div *ngIf="fields.staff">
+    <mat-form-field>
+      <mat-label>Staff</mat-label>
+      <input matInput formControlName="staff" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ApprovedByKeyConsultant field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="approvedByKeyConsultant">Approved By Key Consultant</mat-checkbox>
+  </div>
+
+
+  <!-- Client field - text input -->
+  <div *ngIf="fields.client">
+    <mat-form-field>
+      <mat-label>Client</mat-label>
+      <input matInput formControlName="client" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- WorkType field - text input -->
+  <div *ngIf="fields.workType">
+    <mat-form-field>
+      <mat-label>Work Type</mat-label>
+      <input matInput formControlName="workType" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Notes field - text input -->
+  <div *ngIf="fields.notes">
+    <mat-form-field>
+      <mat-label>Notes</mat-label>
+      <input matInput formControlName="notes" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- PinThisNoteToClient field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="pinThisNoteToClient">Pin This Note To Client</mat-checkbox>
+  </div>
+
+
+  <!-- CalendarEntry field - text input -->
+  <div *ngIf="fields.calendarEntry">
+    <mat-form-field>
+      <mat-label>Calendar Entry</mat-label>
+      <input matInput formControlName="calendarEntry" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Delivered field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="delivered">Delivered</mat-checkbox>
+  </div>
+
+
+  <!-- Billable field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="billable">Billable</mat-checkbox>
+  </div>
+
+
+  <!-- ReasonUnbillable field - text input -->
+  <div *ngIf="fields.reasonUnbillable">
+    <mat-form-field>
+      <mat-label>Reason Unbillable</mat-label>
+      <input matInput formControlName="reasonUnbillable" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ServiceBooking field - text input -->
+  <div *ngIf="fields.serviceBooking">
+    <mat-form-field>
+      <mat-label>Service Booking</mat-label>
+      <input matInput formControlName="serviceBooking" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ServiceBookingDetail field - text input -->
+  <div *ngIf="fields.serviceBookingDetail">
+    <mat-form-field>
+      <mat-label>Service Booking Detail</mat-label>
+      <input matInput formControlName="serviceBookingDetail" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ContractorInvoice field - text input -->
+  <div *ngIf="fields.contractorInvoice">
+    <mat-form-field>
+      <mat-label>Contractor Invoice</mat-label>
+      <input matInput formControlName="contractorInvoice" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Invoiced field - text input -->
+  <div *ngIf="fields.invoiced">
+    <mat-form-field>
+      <mat-label>Invoiced</mat-label>
+      <input matInput formControlName="invoiced" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- PaymentRequest field - text input -->
+  <div *ngIf="fields.paymentRequest">
+    <mat-form-field>
+      <mat-label>Payment Request</mat-label>
+      <input matInput formControlName="paymentRequest" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Date field - text input -->
+  <div *ngIf="fields.date">
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput formControlName="date" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- StartTime field - text input -->
+  <div *ngIf="fields.startTime">
+    <mat-form-field>
+      <mat-label>Start Time</mat-label>
+      <input matInput formControlName="startTime" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- EndDate field - text input -->
+  <div *ngIf="fields.endDate">
+    <mat-form-field>
+      <mat-label>End Date</mat-label>
+      <input matInput formControlName="endDate" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- EndTime field - text input -->
+  <div *ngIf="fields.endTime">
+    <mat-form-field>
+      <mat-label>End Time</mat-label>
+      <input matInput formControlName="endTime" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- HoursFromCalendar field - text input -->
+  <div *ngIf="fields.hoursFromCalendar">
+    <mat-form-field>
+      <mat-label>Hours From Calendar</mat-label>
+      <input matInput formControlName="hoursFromCalendar" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- AudioUrl field - text input -->
+  <div *ngIf="fields.audioUrl">
+    <mat-form-field>
+      <mat-label>Audio Url</mat-label>
+      <input matInput formControlName="audioUrl" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- FileUrl field - text input -->
+  <div *ngIf="fields.fileUrl">
+    <mat-form-field>
+      <mat-label>File Url</mat-label>
+      <input matInput formControlName="fileUrl" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- TimeDiscussed field - text input -->
+  <div *ngIf="fields.timeDiscussed">
+    <mat-form-field>
+      <mat-label>Time Discussed</mat-label>
+      <input matInput formControlName="timeDiscussed" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- DidYouProvideMenoringmodellingToAnotherTeamMember field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="didYouProvideMenoringmodellingToAnotherTeamMember">Did You Provide Menoringmodelling To Another Team Member</mat-checkbox>
+  </div>
+
+
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button>Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

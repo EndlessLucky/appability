@@ -1,0 +1,6 @@
+<h1>User preferences</h1>
+
+<app-theme-menu
+  [options]="options$ | async"
+  (themeChange)="themeChangeHandler($event)">
+</app-theme-menu>

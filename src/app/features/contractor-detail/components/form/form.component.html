@@ -1,0 +1,140 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- Lastmodified field - text input -->
+  <div *ngIf="fields.lastmodified">
+    <mat-form-field>
+      <mat-label>Lastmodified</mat-label>
+      <input matInput formControlName="lastmodified" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Lastmodifiedby field - text input -->
+  <div *ngIf="fields.lastmodifiedby">
+    <mat-form-field>
+      <mat-label>Lastmodifiedby</mat-label>
+      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- BusinessName field - text input -->
+  <div *ngIf="fields.businessName">
+    <mat-form-field>
+      <mat-label>Business Name</mat-label>
+      <input matInput formControlName="businessName" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Abn field - text input -->
+  <div *ngIf="fields.abn">
+    <mat-form-field>
+      <mat-label>Abn</mat-label>
+      <input matInput formControlName="abn" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- AccountName field - text input -->
+  <div *ngIf="fields.accountName">
+    <mat-form-field>
+      <mat-label>Account Name</mat-label>
+      <input matInput formControlName="accountName" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Bsb field - text input -->
+  <div *ngIf="fields.bsb">
+    <mat-form-field>
+      <mat-label>Bsb</mat-label>
+      <input matInput formControlName="bsb" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- AccountNumber field - text input -->
+  <div *ngIf="fields.accountNumber">
+    <mat-form-field>
+      <mat-label>Account Number</mat-label>
+      <input matInput formControlName="accountNumber" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- BusinessAddress field - text input -->
+  <div *ngIf="fields.businessAddress">
+    <mat-form-field>
+      <mat-label>Business Address</mat-label>
+      <input matInput formControlName="businessAddress" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- CurrentContractUrl field - text input -->
+  <div *ngIf="fields.currentContractUrl">
+    <mat-form-field>
+      <mat-label>Current Contract Url</mat-label>
+      <input matInput formControlName="currentContractUrl" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- SuperChoiceFormUrl field - text input -->
+  <div *ngIf="fields.superChoiceFormUrl">
+    <mat-form-field>
+      <mat-label>Super Choice Form Url</mat-label>
+      <input matInput formControlName="superChoiceFormUrl" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button>Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

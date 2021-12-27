@@ -1,0 +1,166 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- Lastmodified field - text input -->
+  <div *ngIf="fields.lastmodified">
+    <mat-form-field>
+      <mat-label>Lastmodified</mat-label>
+      <input matInput formControlName="lastmodified" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Lastmodifiedby field - text input -->
+  <div *ngIf="fields.lastmodifiedby">
+    <mat-form-field>
+      <mat-label>Lastmodifiedby</mat-label>
+      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- PersonMakingComplaint field - text input -->
+  <div *ngIf="fields.personMakingComplaint">
+    <mat-form-field>
+      <mat-label>Person Making Complaint</mat-label>
+      <input matInput formControlName="personMakingComplaint" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- FeedbackType field - text input -->
+  <div *ngIf="fields.feedbackType">
+    <mat-form-field>
+      <mat-label>Feedback Type</mat-label>
+      <input matInput formControlName="feedbackType" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Topic field - text input -->
+  <div *ngIf="fields.topic">
+    <mat-form-field>
+      <mat-label>Topic</mat-label>
+      <input matInput formControlName="topic" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- OutcomeSought field - text input -->
+  <div *ngIf="fields.outcomeSought">
+    <mat-form-field>
+      <mat-label>Outcome Sought</mat-label>
+      <input matInput formControlName="outcomeSought" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- FromWhom field - text input -->
+  <div *ngIf="fields.fromWhom">
+    <mat-form-field>
+      <mat-label>From Whom</mat-label>
+      <input matInput formControlName="fromWhom" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Recieved field - text input -->
+  <div *ngIf="fields.recieved">
+    <mat-form-field>
+      <mat-label>Recieved</mat-label>
+      <input matInput formControlName="recieved" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- HowRecieved field - text input -->
+  <div *ngIf="fields.howRecieved">
+    <mat-form-field>
+      <mat-label>How Recieved</mat-label>
+      <input matInput formControlName="howRecieved" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Acknowledged field - text input -->
+  <div *ngIf="fields.acknowledged">
+    <mat-form-field>
+      <mat-label>Acknowledged</mat-label>
+      <input matInput formControlName="acknowledged" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- HowAcknowledged field - text input -->
+  <div *ngIf="fields.howAcknowledged">
+    <mat-form-field>
+      <mat-label>How Acknowledged</mat-label>
+      <input matInput formControlName="howAcknowledged" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Resolved field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="resolved">Resolved</mat-checkbox>
+  </div>
+
+
+  <!-- How field - text input -->
+  <div *ngIf="fields.how">
+    <mat-form-field>
+      <mat-label>How</mat-label>
+      <input matInput formControlName="how" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button>Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

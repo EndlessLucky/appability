@@ -1,0 +1,77 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- Lastmodified field - Datepicker -->
+<!--  <div>-->
+<!--    <mat-form-field>-->
+<!--      <input matInput formControlName="lastmodified" [matDatepicker]="LastmodifiedDatepicker">-->
+<!--      <mat-datepicker-toggle matSuffix [for]="LastmodifiedDatepicker"></mat-datepicker-toggle>-->
+<!--      <mat-datepicker #LastmodifiedDatepicker></mat-datepicker>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+<!--  &lt;!&ndash; Lastmodifiedby field - text input &ndash;&gt;-->
+<!--  <div *ngIf="fields.lastmodifiedby">-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Lastmodifiedby</mat-label>-->
+<!--      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">-->
+<!--      &lt;!&ndash;      <mat-icon matSuffix>person</mat-icon>&ndash;&gt;-->
+<!--      &lt;!&ndash;      <mat-hint align="end">min 2 characters</mat-hint>&ndash;&gt;-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+  <!-- Code field - text input -->
+  <div *ngIf="fields.code">
+    <mat-form-field>
+      <mat-label>Code</mat-label>
+      <input matInput formControlName="code" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Label field - text input -->
+  <div *ngIf="fields.label">
+    <mat-form-field>
+      <mat-label>Label</mat-label>
+      <input matInput formControlName="label" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Active field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="active">Active</mat-checkbox>
+  </div>
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button>Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

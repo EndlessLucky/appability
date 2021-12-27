@@ -1,0 +1,200 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- Lastmodified field - text input -->
+  <div *ngIf="fields.lastmodified">
+    <mat-form-field>
+      <mat-label>Lastmodified</mat-label>
+      <input matInput formControlName="lastmodified" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Lastmodifiedby field - text input -->
+  <div *ngIf="fields.lastmodifiedby">
+    <mat-form-field>
+      <mat-label>Lastmodifiedby</mat-label>
+      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- DoToday field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="doToday">Do Today</mat-checkbox>
+  </div>
+
+
+  <!-- Complete field - text input -->
+  <div *ngIf="fields.complete">
+    <mat-form-field>
+      <mat-label>Complete</mat-label>
+      <input matInput formControlName="complete" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Action field - text input -->
+  <div *ngIf="fields.action">
+    <mat-form-field>
+      <mat-label>Action</mat-label>
+      <input matInput formControlName="action" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Priority field - text input -->
+  <div *ngIf="fields.priority">
+    <mat-form-field>
+      <mat-label>Priority</mat-label>
+      <input matInput formControlName="priority" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Context field - text input -->
+  <div *ngIf="fields.context">
+    <mat-form-field>
+      <mat-label>Context</mat-label>
+      <input matInput formControlName="context" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Start field - text input -->
+  <div *ngIf="fields.start">
+    <mat-form-field>
+      <mat-label>Start</mat-label>
+      <input matInput formControlName="start" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Due field - text input -->
+  <div *ngIf="fields.due">
+    <mat-form-field>
+      <mat-label>Due</mat-label>
+      <input matInput formControlName="due" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Duration field - text input -->
+  <div *ngIf="fields.duration">
+    <mat-form-field>
+      <mat-label>Duration</mat-label>
+      <input matInput formControlName="duration" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Note field - text input -->
+  <div *ngIf="fields.note">
+    <mat-form-field>
+      <mat-label>Note</mat-label>
+      <input matInput formControlName="note" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Client field - text input -->
+  <div *ngIf="fields.client">
+    <mat-form-field>
+      <mat-label>Client</mat-label>
+      <input matInput formControlName="client" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Tag field - text input -->
+  <div *ngIf="fields.tag">
+    <mat-form-field>
+      <mat-label>Tag</mat-label>
+      <input matInput formControlName="tag" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Staff field - text input -->
+  <div *ngIf="fields.staff">
+    <mat-form-field>
+      <mat-label>Staff</mat-label>
+      <input matInput formControlName="staff" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Safehomechecklist field - text input -->
+  <div *ngIf="fields.safehomechecklist">
+    <mat-form-field>
+      <mat-label>Safehomechecklist</mat-label>
+      <input matInput formControlName="safehomechecklist" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Learninggoal field - text input -->
+  <div *ngIf="fields.learninggoal">
+    <mat-form-field>
+      <mat-label>Learninggoal</mat-label>
+      <input matInput formControlName="learninggoal" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button>Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

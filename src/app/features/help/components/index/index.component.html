@@ -1,0 +1,38 @@
+<h1>{{title}} Help</h1>
+
+<h2>Contact IT Staff</h2>
+
+<p>Business owner <app-user [model]="{firstName: 'David', lastName: 'Ackling-Jones', email: 'david.ackling-jones@abilityconsultants.com.au'}" linkTo="mailto"></app-user></p>
+
+<p>Technical issues <app-user [model]="{firstName: 'Tomek', lastName: 'Pęszor', email: 'tom@taat.pl'}" linkTo="mailto"></app-user></p>
+
+<!--Example of holdable directive in use-->
+<!--<button mat-raised-button appHoldable (holdTime)="delete($event)" (mouseup)="hideProgress()" (mouseleave)="hideProgress()" (mousedown)="showProgress()">Delete</button>-->
+<!--<mat-progress-bar *ngIf="show" [value]="progress"  style="max-width: 200px" mode="determinate"></mat-progress-bar>-->
+
+<p>
+  Let us know how we can improve this application!
+</p>
+
+<h2>Did you know?</h2>
+
+<p>
+  On any page you can click on the little bug icon <mat-icon inline="true" routerLink="/tools/feature-request" class="navitem link">bug_report</mat-icon> in the top bar to:
+</p>
+
+<ul>
+  <li>
+    report an issue,
+  </li>
+  <li>
+    request help,
+  </li>
+  <li>
+    request a new feature,
+  </li>
+  <li>
+    send suggestions or feedback.
+  </li>
+</ul>
+
+<button routerLink="/tools/feature-request" mat-raised-button><mat-icon>bug_report</mat-icon> Report new issue</button>

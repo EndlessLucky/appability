@@ -1,0 +1,58 @@
+<h1>Creating New Service Request</h1>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>REFERRAL FORM</ng-template>
+      <app-ability-consultants-referral-form-autocomplete [formControl]="firstCtrl"></app-ability-consultants-referral-form-autocomplete>
+<!--      <mat-form-field>-->
+<!--        <mat-label>Name</mat-label>-->
+<!--        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>-->
+<!--      </mat-form-field>-->
+      <div>
+        <button mat-button matStepperNext mat-raised-button color="primary">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>CLIENT DATA</ng-template>
+      <div>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="nameCtrl" placeholder="Ex. 1 Main St, New York, NY"
+               required>
+      </mat-form-field>
+      </div>
+      <div>
+      <mat-form-field>
+        <mat-label>Surname</mat-label>
+        <input matInput formControlName="surnameCtrl" placeholder="Ex. 1 Main St, New York, NY"
+               required>
+      </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious mat-raised-button>Back</button>
+        <button mat-button matStepperNext color="primary" mat-raised-button>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>DONE.</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious mat-raised-button>Back</button>
+      <button mat-button (click)="stepper.reset()" color="primary" mat-raised-button>Save</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+<button style="margin-top: 7em" mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button>

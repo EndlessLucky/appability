@@ -1,0 +1,21 @@
+.autocomplete-field {
+  width: 90%;
+}
+
+.autocomplete-item {
+  padding-left: 1em;
+  width: 100%;
+  background-color: white;
+  display: inline-block;
+}
+
+mat-icon.secondary {
+  color: lightgray;
+  display: inline-block;
+}
+
+mat-form-field {
+  width: 100%;
+  max-width: 500px
+}
+

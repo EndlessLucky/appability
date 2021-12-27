@@ -1,0 +1,94 @@
+<h1>{{appTitle}} Login</h1>
+
+<div id="form-container">
+
+<div [formGroup]="loginForm">
+
+  <div>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input autofocus matInput formControlName="email" [errorStateMatcher]="matcher" (keyup.enter)="onSubmit()">
+      <mat-error *ngIf="f.email.hasError('email') && !f.email.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="f.email.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+      <!--      <mat-hint align="start">min 2 characters</mat-hint>-->
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input type="password" matInput formControlName="password" [errorStateMatcher]="matcher" (keyup.enter)="onSubmit()">
+      <mat-error *ngIf="f.password.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+      <!--      <mat-hint align="start">min 2 characters</mat-hint>-->
+      <!--      <mat-icon matSuffix>people</mat-icon>-->
+    </mat-form-field>
+  </div>
+
+</div>
+
+
+<!--<mat-dialog-actions>-->
+  <div>
+
+    <p>
+      <button [disabled]="!loginForm.valid"  type="submit" (click)="onSubmit()" color="primary" mat-raised-button>Login</button>
+    </p>
+    <!--    <button (click)="close()" mat-raised-button>Close</button>-->
+  </div>
+
+<!--          <div *ngIf="error" class="alert alert-danger mt-3 mb-0"><b>{{error}}</b></div>-->
+<div>
+  <p>
+
+    You don't have the credentials? <a href="/signup">Create an account!</a>
+  </p>
+</div>
+
+</div>
+
+<!--</mat-dialog-actions>-->
+
+
+
+
+
+
+<!--<div class="col-md-6 offset-md-3 mt-5">-->
+<!--  <div class="alert alert-info">-->
+<!--    Username: test<br />-->
+<!--    Password: test-->
+<!--  </div>-->
+<!--  <div class="card">-->
+<!--    <h4 class="card-header">{{appTitle}} Login</h4>-->
+<!--    <div class="card-body">-->
+<!--      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">-->
+<!--        <div class="form-group">-->
+<!--          <label for="username">Username</label>-->
+<!--          <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />-->
+<!--          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">-->
+<!--            <div *ngIf="f.username.errors.required">Username is required</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="password">Password</label>-->
+<!--          <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />-->
+<!--          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">-->
+<!--            <div *ngIf="f.password.errors.required">Password is required</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <button [disabled]="loading" class="btn btn-primary">-->
+<!--          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>-->
+<!--          Login-->
+<!--        </button>-->
+<!--        <div *ngIf="error" class="alert alert-danger mt-3 mb-0"><b>{{error}}</b></div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

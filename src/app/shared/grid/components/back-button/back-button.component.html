@@ -1,0 +1,6 @@
+<ng-container *ngIf="label; else backIcon">
+  <button mat-button (click)="goBack()" [color]="color" [title]="title"></button>
+</ng-container>
+<ng-template #backIcon>
+  <mat-icon inline="true" (click)="goBack()" [color]="color" [title]="title">arrow_back</mat-icon>
+</ng-template>

@@ -1,0 +1,56 @@
+
+<div class="app-body3">
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               mode="side"
+               [opened]="(isHandset$ | async) === false">
+    <app-nav></app-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar id="toolbar-main" color="primary">
+      <div>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span class="link" id="app-title"(click)="drawer.toggle()">Appability</span>
+      </div>
+      <div>
+
+      <span routerLink="/tools/feature-request" class="link navitem">
+      <mat-icon inline>bug_report</mat-icon>
+        </span>
+
+    <span routerLink="/dashboard" class="link navitem">
+      <mat-icon inline>person</mat-icon>
+      <span title="Logged in as: {{currentUserName}}">{{currentUserName}}</span>
+
+      <span matBadgeOverlap=false matBadgePosition="above before" matBadge="5" matBadgeColor="accent"
+            matBadgeSize="small"></span>
+
+      <mat-icon inline style="margin-left: 1em;" inline>perm_identity</mat-icon>
+
+        <span title="User role: {{currentUserRole}}">({{currentUserRole}})</span>
+    </span>
+        <span (click)="logout()" class="link navitem">Logout</span>
+      </div>
+    </mat-toolbar>
+
+    <div id="main-area">
+      <div class="sidenav-content">
+        <router-outlet></router-outlet>
+      </div>
+
+      <app-footer></app-footer>
+    </div>
+
+    <app-snackbar></app-snackbar>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</div>
+

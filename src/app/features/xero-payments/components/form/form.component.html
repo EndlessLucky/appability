@@ -1,0 +1,520 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- Id field - text input -->
+  <div *ngIf="fields.id">
+    <mat-form-field>
+      <mat-label>Id</mat-label>
+      <input matInput formControlName="id" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Contactname field - text input -->
+  <div *ngIf="fields.contactname">
+    <mat-form-field>
+      <mat-label>Contactname</mat-label>
+      <input matInput formControlName="contactname" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Emailaddress field - text input -->
+  <div *ngIf="fields.emailaddress">
+    <mat-form-field>
+      <mat-label>Emailaddress</mat-label>
+      <input matInput formControlName="emailaddress" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Poaddressline1 field - text input -->
+  <div *ngIf="fields.poaddressline1">
+    <mat-form-field>
+      <mat-label>Poaddressline1</mat-label>
+      <input matInput formControlName="poaddressline1" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Poaddressline2 field - text input -->
+  <div *ngIf="fields.poaddressline2">
+    <mat-form-field>
+      <mat-label>Poaddressline2</mat-label>
+      <input matInput formControlName="poaddressline2" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Poaddressline3 field - text input -->
+  <div *ngIf="fields.poaddressline3">
+    <mat-form-field>
+      <mat-label>Poaddressline3</mat-label>
+      <input matInput formControlName="poaddressline3" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Poaddressline4 field - text input -->
+  <div *ngIf="fields.poaddressline4">
+    <mat-form-field>
+      <mat-label>Poaddressline4</mat-label>
+      <input matInput formControlName="poaddressline4" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Pocity field - text input -->
+  <div *ngIf="fields.pocity">
+    <mat-form-field>
+      <mat-label>Pocity</mat-label>
+      <input matInput formControlName="pocity" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Poregion field - text input -->
+  <div *ngIf="fields.poregion">
+    <mat-form-field>
+      <mat-label>Poregion</mat-label>
+      <input matInput formControlName="poregion" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Popostalcode field - text input -->
+  <div *ngIf="fields.popostalcode">
+    <mat-form-field>
+      <mat-label>Popostalcode</mat-label>
+      <input matInput formControlName="popostalcode" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Pocountry field - text input -->
+  <div *ngIf="fields.pocountry">
+    <mat-form-field>
+      <mat-label>Pocountry</mat-label>
+      <input matInput formControlName="pocountry" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Saaddressline1 field - text input -->
+  <div *ngIf="fields.saaddressline1">
+    <mat-form-field>
+      <mat-label>Saaddressline1</mat-label>
+      <input matInput formControlName="saaddressline1" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Saaddressline2 field - text input -->
+  <div *ngIf="fields.saaddressline2">
+    <mat-form-field>
+      <mat-label>Saaddressline2</mat-label>
+      <input matInput formControlName="saaddressline2" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Saaddressline3 field - text input -->
+  <div *ngIf="fields.saaddressline3">
+    <mat-form-field>
+      <mat-label>Saaddressline3</mat-label>
+      <input matInput formControlName="saaddressline3" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Saaddressline4 field - text input -->
+  <div *ngIf="fields.saaddressline4">
+    <mat-form-field>
+      <mat-label>Saaddressline4</mat-label>
+      <input matInput formControlName="saaddressline4" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Sacity field - text input -->
+  <div *ngIf="fields.sacity">
+    <mat-form-field>
+      <mat-label>Sacity</mat-label>
+      <input matInput formControlName="sacity" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Saregion field - text input -->
+  <div *ngIf="fields.saregion">
+    <mat-form-field>
+      <mat-label>Saregion</mat-label>
+      <input matInput formControlName="saregion" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Sapostalcode field - text input -->
+  <div *ngIf="fields.sapostalcode">
+    <mat-form-field>
+      <mat-label>Sapostalcode</mat-label>
+      <input matInput formControlName="sapostalcode" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Sacountry field - text input -->
+  <div *ngIf="fields.sacountry">
+    <mat-form-field>
+      <mat-label>Sacountry</mat-label>
+      <input matInput formControlName="sacountry" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Invoicenumber field - text input -->
+  <div *ngIf="fields.invoicenumber">
+    <mat-form-field>
+      <mat-label>Invoicenumber</mat-label>
+      <input matInput formControlName="invoicenumber" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Reference field - text input -->
+  <div *ngIf="fields.reference">
+    <mat-form-field>
+      <mat-label>Reference</mat-label>
+      <input matInput formControlName="reference" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Invoicedate field - text input -->
+  <div *ngIf="fields.invoicedate">
+    <mat-form-field>
+      <mat-label>Invoicedate</mat-label>
+      <input matInput formControlName="invoicedate" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Duedate field - text input -->
+  <div *ngIf="fields.duedate">
+    <mat-form-field>
+      <mat-label>Duedate</mat-label>
+      <input matInput formControlName="duedate" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Planneddate field - text input -->
+  <div *ngIf="fields.planneddate">
+    <mat-form-field>
+      <mat-label>Planneddate</mat-label>
+      <input matInput formControlName="planneddate" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Total field - text input -->
+  <div *ngIf="fields.total">
+    <mat-form-field>
+      <mat-label>Total</mat-label>
+      <input matInput formControlName="total" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Taxtotal field - text input -->
+  <div *ngIf="fields.taxtotal">
+    <mat-form-field>
+      <mat-label>Taxtotal</mat-label>
+      <input matInput formControlName="taxtotal" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Invoiceamountpaid field - text input -->
+  <div *ngIf="fields.invoiceamountpaid">
+    <mat-form-field>
+      <mat-label>Invoiceamountpaid</mat-label>
+      <input matInput formControlName="invoiceamountpaid" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Invoiceamountdue field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="invoiceamountdue">Invoiceamountdue</mat-checkbox>
+  </div>
+
+
+  <!-- Inventoryitemcode field - text input -->
+  <div *ngIf="fields.inventoryitemcode">
+    <mat-form-field>
+      <mat-label>Inventoryitemcode</mat-label>
+      <input matInput formControlName="inventoryitemcode" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Description field - text input -->
+  <div *ngIf="fields.description">
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Quantity field - text input -->
+  <div *ngIf="fields.quantity">
+    <mat-form-field>
+      <mat-label>Quantity</mat-label>
+      <input matInput formControlName="quantity" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Unitamount field - text input -->
+  <div *ngIf="fields.unitamount">
+    <mat-form-field>
+      <mat-label>Unitamount</mat-label>
+      <input matInput formControlName="unitamount" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Discount field - text input -->
+  <div *ngIf="fields.discount">
+    <mat-form-field>
+      <mat-label>Discount</mat-label>
+      <input matInput formControlName="discount" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Lineamount field - text input -->
+  <div *ngIf="fields.lineamount">
+    <mat-form-field>
+      <mat-label>Lineamount</mat-label>
+      <input matInput formControlName="lineamount" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Accountcode field - text input -->
+  <div *ngIf="fields.accountcode">
+    <mat-form-field>
+      <mat-label>Accountcode</mat-label>
+      <input matInput formControlName="accountcode" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Taxtype field - text input -->
+  <div *ngIf="fields.taxtype">
+    <mat-form-field>
+      <mat-label>Taxtype</mat-label>
+      <input matInput formControlName="taxtype" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Taxamount field - text input -->
+  <div *ngIf="fields.taxamount">
+    <mat-form-field>
+      <mat-label>Taxamount</mat-label>
+      <input matInput formControlName="taxamount" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Trackingname1 field - text input -->
+  <div *ngIf="fields.trackingname1">
+    <mat-form-field>
+      <mat-label>Trackingname1</mat-label>
+      <input matInput formControlName="trackingname1" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Trackingoption1 field - text input -->
+  <div *ngIf="fields.trackingoption1">
+    <mat-form-field>
+      <mat-label>Trackingoption1</mat-label>
+      <input matInput formControlName="trackingoption1" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Trackingname2 field - text input -->
+  <div *ngIf="fields.trackingname2">
+    <mat-form-field>
+      <mat-label>Trackingname2</mat-label>
+      <input matInput formControlName="trackingname2" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Trackingoption2 field - text input -->
+  <div *ngIf="fields.trackingoption2">
+    <mat-form-field>
+      <mat-label>Trackingoption2</mat-label>
+      <input matInput formControlName="trackingoption2" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Currency field - text input -->
+  <div *ngIf="fields.currency">
+    <mat-form-field>
+      <mat-label>Currency</mat-label>
+      <input matInput formControlName="currency" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Type field - text input -->
+  <div *ngIf="fields.type">
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <input matInput formControlName="type" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Sent field - text input -->
+  <div *ngIf="fields.sent">
+    <mat-form-field>
+      <mat-label>Sent</mat-label>
+      <input matInput formControlName="sent" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Status field - text input -->
+  <div *ngIf="fields.status">
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <input matInput formControlName="status" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button>Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

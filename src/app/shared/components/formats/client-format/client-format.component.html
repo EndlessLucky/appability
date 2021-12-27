@@ -1,0 +1,5 @@
+<span [ngClass]="customClass">
+  <mat-icon *ngIf="customClass?.edit_pencil_icon && colName=='client'">edit</mat-icon>
+  <mat-icon *ngIf="customClass?.check_icon && colName=='client'">check_circle</mat-icon>
+  {{text}}
+</span>

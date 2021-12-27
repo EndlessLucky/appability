@@ -1,0 +1,85 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+// Import material theming functions
+@import '../../node_modules/@angular/material/theming';
+@import 'app-theme';
+
+@include mat-core();
+$primary: mat-palette($mat-indigo);
+$accent:  mat-palette($mat-pink, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
+@include angular-material-theme($theme);
+@include material-custom-theme($theme);
+
+
+// Copy the palettes from your selected theme (usually theme.scss).
+$app-primary: mat-palette($mat-grey);
+$app-accent:  mat-palette($mat-light-blue);
+$app-warn:    mat-palette($mat-pink);
+//
+//// Create your Sass color vars (will be available in all the project)
+$primary: mat-color($app-primary);
+$accent: mat-color($app-accent);
+$warn: mat-color($app-warn);
+$background: mat-color($app-accent);
+//
+$app-success: mat_palette($mat-green);
+$success: mat-color($app-success);
+
+
+// Global styling
+
+
+html, body {
+  height: 100%;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+// STYLES FOR SUBMIT BUTTONS INSIDE FORMS
+
+.list-inline {
+    li {
+      display: inline;
+      margin-left: 0;
+    }
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.list-inline-buttons {
+    li {
+        margin-right: 1em;
+    }
+}
+
+
+// Colorful snackbar styles
+
+.notification-warn {
+  background-color: $warn;
+  color: white;
+}
+
+.notification-success {
+  background-color: $success;
+  color: white;
+}
+
+.notification-info {
+
+}
+
+// Floatig Action Buttons
+// https://material.io/components/buttons-floating-action-button
+
+.mat-fab-bottom-right {
+  top: auto;
+  right: 2%;
+  bottom: 5%;
+  left: auto;
+  position: fixed !important;
+  z-index: 99
+}
+
+

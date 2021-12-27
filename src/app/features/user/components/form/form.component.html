@@ -1,0 +1,123 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+
+  <div>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('email').getError('required')">
+        email is required
+      </mat-error>
+      <mat-error *ngIf="form.get('email').getError('minlength')">
+        Email length should be greater than 6
+      </mat-error>
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-hint align="end">min 3 characters</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('username').getError('required')">
+        Username is required
+      </mat-error>
+      <mat-error *ngIf="form.get('username').getError('minlength')">
+        Username length should be greater than 2
+      </mat-error>
+      <mat-icon matSuffix>person</mat-icon>
+      <mat-hint align="end">min 3 characters</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('password').getError('required')">
+        Password is required
+      </mat-error>
+      <mat-error *ngIf="form.get('password').getError('minlength')">
+        Password length should be greater than 2
+      </mat-error>
+      <mat-icon matSuffix>lock</mat-icon>
+      <mat-hint align="end">min 3 characters</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Repeat password</mat-label>
+      <input matInput formControlName="password_repeat" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('password_repeat').getError('required')">
+        Repeat password is required
+      </mat-error>
+      <mat-error *ngIf="form.get('password_repeat').getError('minlength')">
+        Repeat password length should be greater than 2
+      </mat-error>
+      <mat-icon matSuffix>lock</mat-icon>
+      <mat-hint align="end">min 3 characters</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+        <mat-select #role formControlName="role" [(ngModel)]="defaultRole" appearance="fill">
+          <mat-option *ngFor="let role of roles" [value]="role.name">
+            {{role.label}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Country</mat-label>
+      <mat-select #country formControlName="country" [(ngModel)]="defaultCountry" appearance="fill">
+        <mat-option *ngFor="let country of countries" [value]="country.iso2">
+          {{country.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Phone number</mat-label>
+      <input matInput formControlName="phone_number" (keyup.enter)="save()">
+      <mat-error *ngIf="form.get('phone_number').getError('minlength')">
+        Phone number length should be greater than 6
+      </mat-error>
+      <mat-icon matSuffix>phone</mat-icon>
+      <mat-hint align="end">min 6 characters</mat-hint>
+    </mat-form-field>
+  </div>
+
+
+
+
+  <ul class="list-inline list-inline-buttons">
+    <li>
+      <button (click)="goBack()" mat-raised-button>Close</button>
+    </li>
+    <li>
+      <button (click)="form.reset()" mat-raised-button>Reset</button>
+    </li>
+    <li>
+      <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button class="btn-save">Save</button>
+    </li>
+  </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json" expandable="0"></app-code-sample>

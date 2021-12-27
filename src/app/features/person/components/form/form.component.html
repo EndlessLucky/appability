@@ -1,0 +1,508 @@
+<h1><app-back-button></app-back-button> {{ dialogTitle }}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden" />
+  </div>
+
+  <!-- Lastmodified field - text input -->
+  <!-- <div>
+    <mat-form-field>
+      <mat-label>Lastmodified</mat-label>
+      <input matInput formControlName="lastmodified" (keyup.enter)="save()" />
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+  </div> -->
+
+  <!-- Modifiedby field - text input -->
+  <!-- <div>
+    <mat-form-field>
+      <mat-label>Modifiedby</mat-label>
+      <input matInput formControlName="modifiedby" (keyup.enter)="save()" />
+    </mat-form-field>
+  </div> -->
+
+  <!-- InheritFromReferralForm field - checkbox -->
+  <div>
+    <mat-checkbox
+      labelPosition="after"
+      formControlName="inheritFromReferralForm"
+      >Inherit From Referral Form</mat-checkbox
+    >
+  </div>
+
+  <ng-container *ngIf="form.controls.inheritFromReferralForm.value">
+    <!-- ReferralForm field - text input -->
+    <app-ability-consultants-referral-form-autocomplete
+      [formControl]="form.controls.referralForm"
+    ></app-ability-consultants-referral-form-autocomplete>
+
+    <!-- ReferralFormRole field - text input -->
+    <app-ability-consultants-referral-form-role
+      [formControl]="form.controls.referralFormRole"
+    ></app-ability-consultants-referral-form-role>
+  </ng-container>
+
+  <!-- Isclient field - checkbox -->
+  <div>
+    <mat-slide-toggle labelPosition="after" formControlName="isclient"
+      >Is Client?</mat-slide-toggle
+    >
+    <!--    <mat-checkbox labelPosition="after" formControlName="isclient">Isclient</mat-checkbox>-->
+  </div>
+
+  <!-- Isfamily field - checkbox -->
+  <div>
+    <mat-slide-toggle labelPosition="after" formControlName="isfamily"
+      >Is Family?</mat-slide-toggle
+    >
+  </div>
+
+  <!-- Useremail field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Useremail</mat-label>
+      <input
+        matInput
+        formControlName="useremail"
+        (keyup.enter)="save()"
+        required
+      />
+      <mat-error *ngIf="form.get('useremail').getError('required')">
+        Useremail is required
+      </mat-error>
+      <mat-error *ngIf="form.get('useremail').getError('email')">
+        Usermaile should be email format
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Firstname field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Firstname</mat-label>
+      <input
+        matInput
+        formControlName="firstname"
+        (keyup.enter)="save()"
+        required
+      />
+      <mat-error *ngIf="form.get('firstname').getError('required')">
+        Firstname is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Surname field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Surname</mat-label>
+      <input
+        matInput
+        formControlName="surname"
+        (keyup.enter)="save()"
+        required
+      />
+      <mat-error *ngIf="form.get('surname').getError('required')">
+        Surname is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Phone field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Phone</mat-label>
+      <input
+        matInput
+        formControlName="phone"
+        (keyup.enter)="save()"
+        placeholder="+1234567890"
+        required
+      />
+      <mat-error *ngIf="form.get('phone').getError('required')">
+        Phone number is required
+      </mat-error>
+      <mat-error *ngIf="form.get('phone').getError('pattern')">
+        Phone number should be +1234567890
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Address field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Address</mat-label>
+      <input
+        matInput
+        formControlName="address"
+        (keyup.enter)="save()"
+        required
+      />
+      <mat-error *ngIf="form.get('address').getError('required')">
+        Address is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- PreferredName field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Preferred Name</mat-label>
+      <input
+        matInput
+        formControlName="preferredName"
+        (keyup.enter)="save()"
+        required
+      />
+      <mat-error *ngIf="form.get('preferredName').getError('required')">
+        PreferredName is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- DateOfBirth field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Date Of Birth</mat-label>
+      <input
+        matInput
+        formControlName="dateOfBirth"
+        (keyup.enter)="save()"
+        [matDatepicker]="birth_picker"
+        required
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="birth_picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #birth_picker></mat-datepicker>
+      <mat-error *ngIf="form.get('dateOfBirth').getError('required')">
+        Date of Birth is required & date format
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Gender field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Gender</mat-label>
+      <!-- <input matInput formControlName="gender" (keyup.enter)="save()"> -->
+      <mat-select formControlName="gender" required>
+        <mat-option [value]="'Male'"> Male </mat-option>
+        <mat-option [value]="'Female'"> Female </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('gender').getError('required')">
+        Gender is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- NdisNumber field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Ndis Number</mat-label>
+      <input
+        matInput
+        formControlName="ndisNumber"
+        (keyup.enter)="save()"
+        type="number"
+        required
+      />
+      <mat-error *ngIf="form.get('ndisNumber').getError('required')">
+        NdisNumber is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- PlanStartDate field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Plan Start Date</mat-label>
+      <input
+        matInput
+        formControlName="planStartDate"
+        (keyup.enter)="save()"
+        [matDatepicker]="start_picker"
+        required
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="start_picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #start_picker></mat-datepicker>
+      <mat-error *ngIf="form.get('planStartDate').getError('required')">
+        PlanStartDate is required & date format
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- PlanReviewDate field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Plan Review Date</mat-label>
+      <input
+        matInput
+        formControlName="planReviewDate"
+        (keyup.enter)="save()"
+        [matDatepicker]="review_picker"
+        required
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="review_picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #review_picker></mat-datepicker>
+      <mat-error *ngIf="form.get('planReviewDate').getError('required')">
+        PlanReviewDate is required & date format
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Notes field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Notes</mat-label>
+      <input matInput formControlName="notes" (keyup.enter)="save()" required />
+      <mat-error *ngIf="form.get('notes').getError('required')">
+        Notes is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Image field - text input -->
+  <div>
+    <mat-form-field appearance="none">
+      <mat-label>Image</mat-label>
+      <!-- <input matInput formControlName="image" (keyup.enter)="save()"> -->
+      <app-file-upload
+        formControlName="image"
+        label="Avatar image"
+      ></app-file-upload>
+      <!-- <mat-error *ngIf="form.get('image').getError('required')">
+        Image is required
+      </mat-error> -->
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Employer field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Employer</mat-label>
+      <input
+        matInput
+        formControlName="employer"
+        (keyup.enter)="save()"
+        required
+      />
+      <mat-error *ngIf="form.get('employer').getError('required')">
+        Employer is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- ContractorDetail field - text input -->
+  <!-- <div>
+    <mat-form-field>
+      <mat-label>Contractor Detail</mat-label>
+      <input
+        matInput
+        formControlName="contractorDetail"
+        (keyup.enter)="save()"
+        required
+      />
+      <mat-error *ngIf="form.get('contractorDetail').getError('required')">
+        ContractorDetail is required
+      </mat-error>
+    </mat-form-field>
+  </div> -->
+
+  <!-- IsKeyContactForEmployer field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Is Key Contact For Employer</mat-label>
+      <mat-select formControlName="isKeyContactForEmployer" required>
+        <mat-option [value]="'TRUE'"> True </mat-option>
+        <mat-option [value]="'FALSE'"> False </mat-option>
+      </mat-select>
+      <!-- <input matInput formControlName="isKeyContactForEmployer" (keyup.enter)="save()"> -->
+      <mat-error
+        *ngIf="form.get('isKeyContactForEmployer').getError('required')"
+      >
+        IsKeyContactForEmployer is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Reportcount field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Reportcount</mat-label>
+      <input
+        matInput
+        formControlName="reportcount"
+        (keyup.enter)="save()"
+        type="number"
+        required
+      />
+      <mat-error *ngIf="form.get('reportcount').getError('required')">
+        Reportcount is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Staffreportcount field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Staffreportcount</mat-label>
+      <input
+        matInput
+        formControlName="staffreportcount"
+        (keyup.enter)="save()"
+        type="number"
+        required
+      />
+      <mat-error *ngIf="form.get('staffreportcount').getError('required')">
+        Staffreportcount is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- Suburb field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Suburb</mat-label>
+      <input
+        matInput
+        formControlName="suburb"
+        (keyup.enter)="save()"
+        required
+      />
+      <mat-error *ngIf="form.get('suburb').getError('required')">
+        Suburb is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- PostCode field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Post Code</mat-label>
+      <input
+        matInput
+        formControlName="postCode"
+        (keyup.enter)="save()"
+        required
+        type="number"
+        placeholder="0000"
+      />
+      <mat-error *ngIf="form.get('postCode').getError('required')">
+        PostCode is required
+      </mat-error>
+      <mat-error *ngIf="form.get('postCode').hasError('pattern')">
+        Length should be 4
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- HasRestrictivePractices field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Has Restrictive Practices</mat-label>
+      <!-- <input matInput formControlName="hasRestrictivePractices" (keyup.enter)="save()" required> -->
+      <mat-select formControlName="hasRestrictivePractices">
+        <mat-option [value]="'TRUE'"> True </mat-option>
+        <mat-option [value]="'FALSE'"> False </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="form.get('hasRestrictivePractices').getError('required')"
+      >
+        HasRestrictivePractices is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+  <!-- StaffCompliance field - text input -->
+  <!-- <div>
+    <mat-form-field>
+      <mat-label>Staff Compliance</mat-label>
+      <input
+        matInput
+        formControlName="staffCompliance"
+        (keyup.enter)="save()"
+        required
+      />
+      <mat-error *ngIf="form.get('staffCompliance').getError('required')">
+        StaffCompliance is required
+      </mat-error>
+    </mat-form-field>
+  </div> -->
+
+  <ul class="list-inline list-inline-buttons">
+    <li>
+      <button (click)="goBack()" mat-raised-button>Close</button>
+    </li>
+    <li>
+      <button (click)="form.reset()" mat-raised-button>Reset</button>
+    </li>
+    <li>
+      <button
+        [disabled]="!saveButtonEnabled()"
+        type="submit"
+        (click)="save()"
+        color="primary"
+        mat-raised-button
+        class="btn-save"
+      >
+        Save
+      </button>
+    </li>
+  </ul>
+</form>
+
+<ng-template #loading>
+  <mat-progress-spinner color="primary" mode="indeterminate">
+  </mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

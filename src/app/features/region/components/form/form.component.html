@@ -1,0 +1,80 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- Lastmodified field - text input -->
+<!--  <div>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Lastmodified</mat-label>-->
+<!--      <input matInput formControlName="lastmodified" (keyup.enter)="save()">-->
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+  <!-- Lastmodifiedby field - text input -->
+<!--  <div>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Lastmodifiedby</mat-label>-->
+<!--      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">-->
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+  <!-- Rank field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>name</mat-label>
+      <input matInput formControlName="name" (keyup.enter)="save()" required>
+      <mat-error *ngIf="form.get('name').getError('required')">
+        Name is required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Title field - text input -->
+  <div>
+    <mat-form-field>
+      <mat-label>Comments</mat-label>
+      <textarea matInput formControlName="comments" (keyup.enter)="save()" required></textarea>
+      <mat-error *ngIf="form.get('comments').getError('required')">
+        Comments are required
+      </mat-error>
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button class="btn-save">Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

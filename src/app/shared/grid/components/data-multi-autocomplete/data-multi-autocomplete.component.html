@@ -1,0 +1,53 @@
+<mat-form-field class="autocomplete-field">
+  <!-- Search term input box -->
+  <mat-label>{{label}}</mat-label>
+  <input type="text" #inputTrigger placeholder="Search and select" matInput [matAutocomplete]="autoComplete"
+         [formControl]="inputControl"
+         [matChipInputFor]="chipList" title="Search and select one or more"/>
+
+  <!-- Open/hide list buttons -->
+  <ng-container *ngIf="autoComplete.isOpen; else expand" matSuffix>
+    <mat-icon (click)="closePanel($event)" matSuffix title="Close list">close</mat-icon>
+  </ng-container>
+  <ng-template #expand>
+    <mat-icon (click)="openPanel($event);" matSuffix title="Show list">expand_more</mat-icon>
+  </ng-template>
+
+  <mat-autocomplete class="autocomplete-field" multiple #autoComplete="matAutocomplete" [displayWith]="getDisplayed" (optionSelected)="selected()">
+    <!-- Option list -->
+    <ng-container *ngIf="!($isLoading | async) && optionList as listItems; else progressSpinner">
+      <mat-option multiple *ngFor="let listItem of listItems" [value]="listItem" style="padding: 0;">
+        <div>
+          <mat-checkbox class="autocomplete-item" [checked]="listItem.selected" (click)="checkboxClicked($event, listItem)">
+            <span>{{getOptionLabel(listItem)}}</span>
+          </mat-checkbox>
+        </div>
+      </mat-option>
+    </ng-container>
+
+    <!-- Progress indicator -->
+    <ng-template #progressSpinner>
+      <mat-option class="is-loading" disabled="disabled">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </mat-option>
+    </ng-template>
+
+  </mat-autocomplete>
+
+</mat-form-field>
+
+<mat-icon class="secondary" matSuffix title="Create new record" [routerLink]="getCreateRoute()">add</mat-icon>
+<mat-icon class="secondary" matSuffix title="List all records" [routerLink]="getListRoute()">list</mat-icon>
+<mat-icon class="secondary" *ngIf="inputControl.value && inputControl.value.id" [routerLink]="getViewRoute()" matSuffix title="Edit {{inputControl.value[getOrderByField()]}}">more_horiz</mat-icon>
+
+
+
+<!-- Selected items -->
+<mat-chip-list #chipList>
+  <mat-chip *ngFor="let listItem of selectedItems" [selectable]="selectable" [removable]="removable" (removed)="remove(listItem)" (click)="chipClicked(listItem)">
+    <span>{{getOptionLabel(listItem)}}</span>
+    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+  </mat-chip>
+</mat-chip-list>
+
+

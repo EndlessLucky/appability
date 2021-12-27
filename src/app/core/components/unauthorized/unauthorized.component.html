@@ -1,0 +1,17 @@
+<h1>{{currentRole}} is not authorized to access this resource.</h1>
+
+<p>
+  <ng-template [ngIf]="requiresRelogin()" [ngIfElse]="historyBtn">
+  <button mat-raised-button color="primary" (click)="goBack()">Go back</button>
+  </ng-template>
+
+<ng-template #historyBtn>
+    <button mat-raised-button color="primary" onclick="window.history.back()">Go back</button>
+</ng-template>
+
+</p>
+
+<p>
+  <button mat-raised-button (click)="logout()">Login as different user</button>
+</p>
+

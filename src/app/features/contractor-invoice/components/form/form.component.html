@@ -1,0 +1,211 @@
+<h1><app-back-button></app-back-button> {{dialogTitle}}</h1>
+
+<form [formGroup]="form" *ngIf="!isLoading; else loading">
+  <div>
+    <input formControlName="id" type="hidden">
+  </div>
+
+  <!-- Lastmodified field - text input -->
+  <div *ngIf="fields.lastmodified">
+    <mat-form-field>
+      <mat-label>Lastmodified</mat-label>
+      <input matInput formControlName="lastmodified" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Lastmodifiedby field - text input -->
+  <div *ngIf="fields.lastmodifiedby">
+    <mat-form-field>
+      <mat-label>Lastmodifiedby</mat-label>
+      <input matInput formControlName="lastmodifiedby" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Contractor field - text input -->
+  <div *ngIf="fields.contractor">
+    <mat-form-field>
+      <mat-label>Contractor</mat-label>
+      <input matInput formControlName="contractor" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- RecipientReference field - text input -->
+  <div *ngIf="fields.recipientReference">
+    <mat-form-field>
+      <mat-label>Recipient Reference</mat-label>
+      <input matInput formControlName="recipientReference" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- ContractorReference field - text input -->
+  <div *ngIf="fields.contractorReference">
+    <mat-form-field>
+      <mat-label>Contractor Reference</mat-label>
+      <input matInput formControlName="contractorReference" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- FileUrl field - text input -->
+  <div *ngIf="fields.fileUrl">
+    <mat-form-field>
+      <mat-label>File Url</mat-label>
+      <input matInput formControlName="fileUrl" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- DateAndTimeSubmitted field - text input -->
+  <div *ngIf="fields.dateAndTimeSubmitted">
+    <mat-form-field>
+      <mat-label>Date And Time Submitted</mat-label>
+      <input matInput formControlName="dateAndTimeSubmitted" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Paid field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="paid">Paid</mat-checkbox>
+  </div>
+
+
+  <!-- PermissionForVariance field - text input -->
+  <div *ngIf="fields.permissionForVariance">
+    <mat-form-field>
+      <mat-label>Permission For Variance</mat-label>
+      <input matInput formControlName="permissionForVariance" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- DateAndTimePaid field - text input -->
+  <div *ngIf="fields.dateAndTimePaid">
+    <mat-form-field>
+      <mat-label>Date And Time Paid</mat-label>
+      <input matInput formControlName="dateAndTimePaid" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- PaymentAmount field - text input -->
+  <div *ngIf="fields.paymentAmount">
+    <mat-form-field>
+      <mat-label>Payment Amount</mat-label>
+      <input matInput formControlName="paymentAmount" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- EmailedToContractor field - text input -->
+  <div *ngIf="fields.emailedToContractor">
+    <mat-form-field>
+      <mat-label>Emailed To Contractor</mat-label>
+      <input matInput formControlName="emailedToContractor" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- PaymentBankReceipt field - text input -->
+  <div *ngIf="fields.paymentBankReceipt">
+    <mat-form-field>
+      <mat-label>Payment Bank Receipt</mat-label>
+      <input matInput formControlName="paymentBankReceipt" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Note field - text input -->
+  <div *ngIf="fields.note">
+    <mat-form-field>
+      <mat-label>Note</mat-label>
+      <input matInput formControlName="note" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- Adjective field - text input -->
+  <div *ngIf="fields.adjective">
+    <mat-form-field>
+      <mat-label>Adjective</mat-label>
+      <input matInput formControlName="adjective" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- TotalDueLastInvoice field - text input -->
+  <div *ngIf="fields.totalDueLastInvoice">
+    <mat-form-field>
+      <mat-label>Total Due Last Invoice</mat-label>
+      <input matInput formControlName="totalDueLastInvoice" (keyup.enter)="save()">
+      <!--      <mat-icon matSuffix>person</mat-icon>-->
+      <!--      <mat-hint align="end">min 2 characters</mat-hint>-->
+    </mat-form-field>
+  </div>
+
+
+  <!-- SuperPaymentMade field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="superPaymentMade">Super Payment Made</mat-checkbox>
+  </div>
+
+
+  <!-- SuperPaymentAttached field - checkbox -->
+  <div>
+    <mat-checkbox labelPosition="after" formControlName="superPaymentAttached">Super Payment Attached</mat-checkbox>
+  </div>
+
+  <ul class="list-inline list-inline-buttons">
+      <li>
+        <button (click)="goBack()" mat-raised-button>Close</button>
+      </li>
+      <li>
+        <button (click)="form.reset()" mat-raised-button>Reset</button>
+      </li>
+      <li>
+        <button [disabled]="!saveButtonEnabled()" type="submit" (click)="save()" color="primary" mat-raised-button>Save</button>
+      </li>
+    </ul>
+
+</form>
+
+<ng-template #loading>
+<mat-progress-spinner
+  color="primary"
+  mode="indeterminate">
+</mat-progress-spinner>
+</ng-template>
+
+<app-code-sample *appHasRole="'Admin'" [form]="form" [code]="form.value | json"></app-code-sample>

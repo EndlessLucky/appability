@@ -1,0 +1,60 @@
+<h1>{{fullTitle}}</h1>
+
+<div *ngIf="displayedFields && model$ | async as model; else loading">
+  <div style="margin-bottom: 1em;">
+    <button mat-raised-button [routerLink]="['../../list']" title="Show all entries">Index</button>
+    <button mat-raised-button [routerLink]="['../../create']" title="Create similar entry">New</button>
+    <button class="mat-fab-bottom-right" color="accent" mat-fab [routerLink]="['../../update', model['id']]" title="Edit this entry"><mat-icon>edit</mat-icon></button>
+  </div>
+
+  <h2>{{model.toString()}}</h2>
+
+  <button mat-button mat-fab (click)="sendPdf(model)" color="primary"><mat-icon>email</mat-icon></button>
+
+  <a href="{{htmlLink}}{{model.id}}" mat-button mat-fab><mat-icon>subject</mat-icon></a>
+
+  <table>
+    <tbody>
+    <ng-container *ngFor="let row of displayedFields">
+      <tr>
+        <th scope="row" style="text-align: right; padding: 1.5em 1em">{{row | appWordize}}</th>
+        <td style="border-bottom: 1px solid lightgray; padding: 1.5em 0.5em;">
+          <ng-container *ngIf="model[row] && model[row].id; else simple">
+            <mat-chip-list>
+              <mat-chip routerLink="/person/view/{{model[row].id}}">
+                {{decorate(model[row])}}
+              </mat-chip>
+            </mat-chip-list>
+          </ng-container>
+          <ng-template #simple>
+            <ng-container *ngIf="row == 'image'; else textual">
+              <img src="http://localhost:8083/drive/{{model[row]}}" alt="{{model[row]}}" style="
+  max-width: 100px;
+  max-height: 100px;"/>
+            </ng-container>
+            <ng-template #textual>
+              {{decorate(model[row])}}
+            </ng-template>
+          </ng-template>
+        </td>
+      </tr>
+    </ng-container>
+
+    </tbody>
+  </table>
+
+
+  <h3>Model as JSON</h3>
+  <div>
+    <pre>{{lastRes | json}}
+    </pre>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</ng-template>

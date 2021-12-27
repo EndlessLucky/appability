@@ -1,0 +1,40 @@
+
+
+/** Main left sidebar, layout **/
+
+mat-sidenav-container {
+  height: 100%;
+}
+mat-sidenav, mat-sidenav-content {
+  padding: 0.5rem;
+}
+mat-sidenav {
+  //width: 25%;
+  //min-width: 200px;
+}
+
+
+/** Links with icons **/
+// e.g.  <span routerLink="/logout" class="link with-icon"><mat-icon>account_box</mat-icon>Logout</span>
+
+
+.with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mat-icon {
+  padding-right: 0.25rem;
+}
+
+
+
+.mat-spinner {
+  margin:0 auto;
+}
+
+.mat-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
